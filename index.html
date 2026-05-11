@@ -14,6 +14,7 @@
   --text:#1a1917; --text2:#6b6860; --text3:#999690;
   --accent:#2d5a3d; --accent-light:#e8f0eb;
   --accent2:#7a4f2e; --accent2-light:#f4ede6;
+  --blue:#2d5f80; --blue-light:#e8f2f8;
   --radius:12px; --radius-sm:8px;
   --safe-bottom:env(safe-area-inset-bottom,0px);
 }
@@ -23,7 +24,10 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 .app-header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 16px 12px;position:sticky;top:0;z-index:100}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .app-title{font-family:Georgia,serif;font-size:20px;font-weight:normal;color:var(--text);letter-spacing:-0.3px}
+.header-right{display:flex;align-items:center;gap:8px}
 .block-chip{font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:4px 10px;border-radius:20px}
+.progress-btn{font-size:12px;font-weight:500;color:var(--blue);background:var(--blue-light);padding:4px 10px;border-radius:20px;border:none;cursor:pointer}
+.progress-btn.active{background:var(--blue);color:#fff}
 .week-nav{display:flex;align-items:center;gap:6px}
 .week-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .week-btn:disabled{opacity:0.3}
@@ -54,33 +58,72 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 .ex-badge{font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
 .ex-badge.deload{color:var(--text2);background:var(--surface2)}
 .ex-desc{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:6px}
-.ex-note{font-size:12px;color:var(--accent2);background:var(--accent2-light);padding:5px 9px;border-radius:6px;margin-bottom:10px;line-height:1.4}
-.weight-section{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface2);border-top:1px solid var(--border)}
-.weight-label{font-size:12px;color:var(--text2);font-weight:500;white-space:nowrap}
+.ex-note-tip{font-size:12px;color:var(--accent2);background:var(--accent2-light);padding:5px 9px;border-radius:6px;margin-bottom:10px;line-height:1.4}
+.log-section{background:var(--surface2);border-top:1px solid var(--border);padding:10px 14px}
+.weight-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.field-label{font-size:12px;color:var(--text2);font-weight:500;white-space:nowrap;width:46px}
 .weight-input-wrap{display:flex;align-items:center;gap:6px;flex:1}
 .weight-input{width:88px;height:40px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:17px;font-weight:600;text-align:center;color:var(--text);padding:0 6px;-webkit-appearance:none;appearance:none}
 .weight-input:focus{outline:none;border-color:var(--accent)}
 .weight-unit{font-size:13px;color:var(--text2)}
 .prev-weight{font-size:11px;color:var(--text3);text-align:right;line-height:1.5;min-width:60px}
 .prev-val{font-weight:600;color:var(--text2);font-size:12px}
-.cardio-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px;border-left:3px solid #4a90b8}
-.cardio-type{font-size:14px;font-weight:600;color:#2d5f80;margin-bottom:4px}
+.notes-row{display:flex;align-items:flex-start;gap:10px}
+.notes-input{flex:1;min-height:36px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:13px;color:var(--text);padding:8px 10px;resize:none;font-family:inherit;line-height:1.4}
+.notes-input:focus{outline:none;border-color:var(--accent)}
+.notes-input::placeholder{color:var(--text3)}
+.cardio-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px;border-left:3px solid var(--blue)}
 .cardio-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.cardio-chip{font-size:11px;padding:3px 8px;border-radius:10px;background:#e8f2f8;color:#2d5f80;font-weight:500}
+.cardio-type{font-size:14px;font-weight:600;color:var(--blue)}
+.cardio-chip{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--blue-light);color:var(--blue);font-weight:500}
 .cardio-detail{font-size:13px;color:var(--text2);margin-bottom:3px}
-.cardio-note{font-size:12px;color:var(--text3);font-style:italic}
+.cardio-note-text{font-size:12px;color:var(--text3);font-style:italic}
 .rest-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 20px;text-align:center}
 .rest-icon{font-size:32px;margin-bottom:10px}
 .rest-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
 .rest-sub{font-size:13px;color:var(--text2);line-height:1.6}
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 16px;padding-bottom:calc(12px + var(--safe-bottom));display:flex;align-items:center;gap:10px;z-index:100}
-.save-btn{flex:1;height:48px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:0.2px}
+.progress-view{padding:12px 16px;padding-bottom:calc(90px + var(--safe-bottom))}
+.prog-head{margin-bottom:14px}
+.prog-head-title{font-family:Georgia,serif;font-size:22px;font-weight:normal;color:var(--text);letter-spacing:-0.3px}
+.prog-head-sub{font-size:13px;color:var(--text2);margin-top:2px}
+.progress-section-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.progress-section-header{padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text2)}
+.progress-section-body{padding:0 6px 6px}
+.progress-table{width:100%;border-collapse:collapse;font-size:12px}
+.progress-table th{text-align:left;color:var(--text3);font-weight:500;padding:6px 6px 4px;font-size:11px;letter-spacing:0.3px}
+.progress-table th.num{text-align:center}
+.progress-table td{padding:7px 6px;border-top:1px solid var(--border);color:var(--text2);vertical-align:middle}
+.progress-table td.ex-col{color:var(--text);font-weight:500;font-size:12px;line-height:1.3}
+.progress-table td.wt-col{text-align:center;font-size:13px;font-weight:600;color:var(--text);min-width:38px}
+.progress-table td.wt-col.empty{color:var(--text3);font-weight:400;font-size:12px}
+.progress-table td.wt-col.best{color:var(--accent);font-weight:700}
+.progress-table tr:nth-child(even) td{background:#faf9f6}
+.note-row td{border-top:none !important;background:#faf9f6 !important;padding:2px 6px 8px !important;font-size:11px;color:var(--text3);font-style:italic;line-height:1.5}
+.no-data-msg{font-size:13px;color:var(--text3);text-align:center;padding:24px;font-style:italic}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:10px 16px;padding-bottom:calc(10px + var(--safe-bottom));display:flex;align-items:center;gap:8px;z-index:100}
+.save-btn{flex:1;height:46px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
+.save-btn:active{opacity:0.85}
 .save-btn.saved{background:#4a7c5c}
-.progress-wrap{flex-shrink:0;text-align:center;min-width:44px}
-.progress-num{font-size:18px;font-weight:700;color:var(--accent);display:block;line-height:1.1}
-.progress-lbl{font-size:11px;color:var(--text3)}
+.sync-btn{height:46px;padding:0 14px;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-light);border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.sync-btn:active{opacity:0.85}
+.progress-wrap{flex-shrink:0;text-align:center;min-width:40px}
+.progress-num{font-size:17px;font-weight:700;color:var(--accent);display:block;line-height:1.1}
+.progress-lbl{font-size:10px;color:var(--text3)}
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--text);color:#fff;font-size:13px;font-weight:500;padding:10px 18px;border-radius:20px;z-index:200;opacity:0;transition:all 0.25s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:300;display:flex;align-items:flex-end;justify-content:center}
+.modal-overlay.hidden{display:none}
+.modal{background:var(--surface);border-radius:var(--radius) var(--radius) 0 0;padding:20px 20px calc(20px + var(--safe-bottom));width:100%;max-width:480px}
+.modal-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5}
+.modal-field{margin-bottom:10px}
+.modal-field label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:4px}
+.modal-input{width:100%;height:42px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:14px;color:var(--text);padding:0 12px;font-family:inherit}
+.modal-input:focus{outline:none;border-color:var(--accent)}
+.modal-hint{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.4}
+.modal-btns{display:flex;gap:8px;margin-top:14px}
+.modal-cancel{flex:1;height:44px;background:var(--surface2);color:var(--text2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer}
+.modal-confirm{flex:2;height:44px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
@@ -88,7 +131,10 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 <div class="app-header">
   <div class="header-top">
     <span class="app-title">Workout Tracker</span>
-    <span class="block-chip" id="blockChip">Block 1</span>
+    <div class="header-right">
+      <button class="progress-btn" id="progressToggle" onclick="toggleProgress()">Progress</button>
+      <span class="block-chip" id="blockChip">Block 1</span>
+    </div>
   </div>
   <div class="week-nav">
     <button class="week-btn" id="prevBtn" onclick="changeWeek(-1)">&#8249;</button>
@@ -103,257 +149,189 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 <div id="focusBanner" class="focus-banner"></div>
 <div class="day-tabs-wrap" id="dayTabs"></div>
 <div class="main" id="mainContent"></div>
+<div class="progress-view" id="progressContent" style="display:none"></div>
 
 <div class="bottom-bar">
-  <div class="progress-wrap">
+  <div class="progress-wrap" id="progWrap">
     <span class="progress-num" id="progNum">0</span>
     <span class="progress-lbl">logged</span>
   </div>
   <button class="save-btn" id="saveBtn" onclick="saveAll()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-      <polyline points="17 21 17 13 7 13 7 21"/>
-      <polyline points="7 3 7 8 15 8"/>
-    </svg>
-    Save Week
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+    Save
+  </button>
+  <button class="sync-btn" id="syncBtn" onclick="openSyncModal()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    Sync
   </button>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<script>
+<div class="modal-overlay hidden" id="syncModal">
+  <div class="modal">
+    <div class="modal-title">Sync to Google Sheets</div>
+    <div class="modal-sub">Writes all logged weights and notes to a sheet named "Workout Log - Block 1" in your spreadsheet.</div>
+    <div class="modal-field">
+      <label>Google Sheets API Key</label>
+      <input class="modal-input" type="password" id="apiKeyInput" placeholder="AIza..." autocomplete="off">
+      <div class="modal-hint">From Google Cloud Console - Credentials. Enable the Sheets API and create an API key.</div>
+    </div>
+    <div class="modal-field">
+      <label>Spreadsheet ID</label>
+      <input class="modal-input" type="text" id="sheetIdInput" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms" autocomplete="off">
+      <div class="modal-hint">The long ID in your Google Sheets URL: docs.google.com/spreadsheets/d/[ID]/edit</div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeSyncModal()">Cancel</button>
+      <button class="modal-confirm" onclick="doSync()">Sync Now</button>
+    </div>
+  </div>
+</div>
 
+<script>
 var WEEKS = [
-  {
-    label: "Wk 1", full: "Week 1", isDeload: false, setsAdj: 0, rpeLabel: "RPE 7-8",
-    focus: "Foundation week — establish your baseline weights. Aim for RPE 7-8 on all sets. Leave 2 reps in reserve. This is data collection, not max effort."
-  },
-  {
-    label: "Wk 2", full: "Week 2", isDeload: false, setsAdj: 0, rpeLabel: "RPE 8-8.5",
-    focus: "Add weight where Week 1 felt easy. If you hit the top of the rep range with room to spare, add 5 lbs this week."
-  },
-  {
-    label: "Wk 3", full: "Week 3", isDeload: false, setsAdj: 1, rpeLabel: "RPE 8.5-9",
-    focus: "Overload week — push your top set to RPE 9 on main lifts. Volume is at its peak. This is the hard week."
-  },
-  {
-    label: "Wk 4", full: "Week 4 - Deload", isDeload: true, setsAdj: -1, rpeLabel: "RPE 7 cap",
-    focus: "Deload week — reduce sets by 1, keep the same weights. Let your body recover and absorb. Assess what to carry into Block 2."
-  }
+  { label:"Wk 1", full:"Week 1", isDeload:false, setsAdj:0, rpeLabel:"RPE 7-8",
+    focus:"Foundation week - establish your baseline weights. Aim for RPE 7-8 on all sets. Leave 2 reps in reserve. This is data collection, not max effort." },
+  { label:"Wk 2", full:"Week 2", isDeload:false, setsAdj:0, rpeLabel:"RPE 8-8.5",
+    focus:"Add weight where Week 1 felt easy. If you hit the top of the rep range with room to spare, add 5 lbs this week." },
+  { label:"Wk 3", full:"Week 3", isDeload:false, setsAdj:1, rpeLabel:"RPE 8.5-9",
+    focus:"Overload week - push your top set to RPE 9 on main lifts. Volume is at its peak. This is the hard week." },
+  { label:"Wk 4", full:"Week 4 - Deload", isDeload:true, setsAdj:-1, rpeLabel:"RPE 7 cap",
+    focus:"Deload week - reduce sets by 1, keep the same weights. Let your body recover and absorb. Assess what to carry into Block 2." }
 ];
 
 var DAYS = [
-  {
-    id: "pushA", label: "Push A", muscle: "Chest - Shoulders - Triceps", cardio: null,
-    exercises: [
-      {
-        name: "Barbell Bench Press", sets: "3-4", reps: "4-6",
-        desc: "Lie flat, grip slightly wider than shoulders. Lower bar to lower-mid chest with elbows at 45 degrees. Press to lockout with control.",
-        note: "Top set - primary progression marker. If you hit 6 reps at RPE 8.5 or below, add 5 lbs next week."
-      },
-      {
-        name: "Decline DB Press", sets: "3", reps: "8-10",
-        desc: "Bench at 20-30 degree decline. Press DBs from lower chest. Neutral or slight pronation grip. Control the descent.",
-        note: "Replaces Machine Chest Press. Hits lower chest with better range of motion."
-      },
-      {
-        name: "Incline DB Press", sets: "3", reps: "6-10",
-        desc: "Bench at 15-30 degrees. Press from upper chest line to above shoulders. Stop just short of shoulder discomfort.",
-        note: "Keep wrists stacked, elbows at 45 degrees. Avoid flaring."
-      },
-      {
-        name: "Pec Deck with Pause", sets: "3", reps: "12-15",
-        desc: "Sit upright, elbows at shoulder height. Sweep arms together and hold 1 second at peak contraction before releasing slowly.",
-        note: "Replaces Cable Fly. Focus on the squeeze, not the load. Go lighter than you think."
-      },
-      {
-        name: "Tricep Rope Pushdown", sets: "3", reps: "10-12",
-        desc: "High cable, rope attachment. Elbows pinned at sides. Push rope down and flare handles outward at the bottom.",
-        note: ""
-      },
-      {
-        name: "Overhead DB Tricep Extension", sets: "3", reps: "10-12",
-        desc: "Seated or standing. Hold one DB with both hands overhead. Lower behind head, elbows close to ears. Press back up.",
-        note: "Hits long head of tricep. Replaces Bar Pressdown on this day."
-      }
+  { id:"pushA", label:"Push A", muscle:"Chest - Shoulders - Triceps", cardio:null,
+    exercises:[
+      { name:"Barbell Bench Press", sets:"3-4", reps:"4-6",
+        desc:"Lie flat, grip slightly wider than shoulders. Lower bar to lower-mid chest with elbows at 45 degrees. Press to lockout with control.",
+        note:"Top set - primary progression marker. If you hit 6 reps at RPE 8.5 or below, add 5 lbs next week." },
+      { name:"Decline DB Press", sets:"3", reps:"8-10",
+        desc:"Bench at 20-30 degree decline. Press DBs from lower chest. Neutral or slight pronation grip. Control the descent.",
+        note:"Replaces Machine Chest Press. Hits lower chest with better range of motion." },
+      { name:"Incline DB Press", sets:"3", reps:"6-10",
+        desc:"Bench at 15-30 degrees. Press from upper chest line to above shoulders. Stop just short of shoulder discomfort.",
+        note:"Keep wrists stacked, elbows at 45 degrees. Avoid flaring." },
+      { name:"Pec Deck with Pause", sets:"3", reps:"12-15",
+        desc:"Sit upright, elbows at shoulder height. Sweep arms together and hold 1 second at peak contraction before releasing slowly.",
+        note:"Replaces Cable Fly. Focus on the squeeze, not the load. Go lighter than you think." },
+      { name:"Tricep Rope Pushdown", sets:"3", reps:"10-12",
+        desc:"High cable, rope attachment. Elbows pinned at sides. Push rope down and flare handles outward at the bottom.", note:"" },
+      { name:"Overhead DB Tricep Extension", sets:"3", reps:"10-12",
+        desc:"Seated or standing. Hold one DB with both hands overhead. Lower behind head, elbows close to ears. Press back up.",
+        note:"Hits long head of tricep. Replaces Bar Pressdown on this day." }
     ]
   },
-  {
-    id: "pullA", label: "Pull A", muscle: "Back - Biceps",
-    cardio: {
-      type: "Easy Run or Walk", duration: "20-30 min", effort: "RPE 5-6",
-      note: "Conversational pace. A brisk walk counts just as much as a run here."
-    },
-    exercises: [
-      {
-        name: "Pendlay Row", sets: "3-4", reps: "5-8",
-        desc: "Bar returns to floor each rep. Hinge to near-horizontal torso. Pull bar explosively to lower chest, lower under full control to floor.",
-        note: "Replaces Bent Over Row. More explosive, more posterior chain. Expect slightly less weight to start."
-      },
-      {
-        name: "Neutral-Grip Pull-Up", sets: "3", reps: "6-8",
-        desc: "Parallel handles, palms facing each other. Drive elbows down and back to pull chest toward bar. Lower to full extension.",
-        note: "Use assisted machine or band if needed. Full extension at the bottom matters."
-      },
-      {
-        name: "Single-Arm DB Row", sets: "3", reps: "8-10 each",
-        desc: "One hand on bench. Row DB to hip, keeping torso stable. Full stretch at bottom - feel the lat lengthen.",
-        note: ""
-      },
-      {
-        name: "Seated Cable Row - Wide Grip", sets: "3", reps: "10-12",
-        desc: "Wide bar or dual handles. Row to lower sternum, squeeze shoulder blades. 3-count eccentric.",
-        note: "Wide grip shifts emphasis to mid-back and rear delts."
-      },
-      {
-        name: "Face Pull", sets: "3", reps: "12-15",
-        desc: "High cable + rope. Pull toward forehead with elbows high. Finish with external rotation - thumbs pointing back behind you.",
-        note: "Keep load moderate. Also acts as a shoulder health movement."
-      },
-      {
-        name: "Incline DB Curl", sets: "3", reps: "10-12",
-        desc: "Bench at 60 degrees. Arms hang straight down. Curl with supinated wrist. The stretch at the bottom is the whole point.",
-        note: "Replaces EZ-Bar Curl. Long head bias - use less weight than your usual curl."
-      }
+  { id:"pullA", label:"Pull A", muscle:"Back - Biceps",
+    cardio:{ type:"Easy Run or Walk", duration:"20-30 min", effort:"RPE 5-6",
+             note:"Conversational pace. A brisk walk counts just as much as a run here." },
+    exercises:[
+      { name:"Pendlay Row", sets:"3-4", reps:"5-8",
+        desc:"Bar returns to floor each rep. Hinge to near-horizontal torso. Pull bar explosively to lower chest, lower under full control to floor.",
+        note:"Replaces Bent Over Row. More explosive, more posterior chain. Expect slightly less weight to start." },
+      { name:"Neutral-Grip Pull-Up", sets:"3", reps:"6-8",
+        desc:"Parallel handles, palms facing each other. Drive elbows down and back to pull chest toward bar. Lower to full extension.",
+        note:"Use assisted machine or band if needed. Full extension at the bottom matters." },
+      { name:"Single-Arm DB Row", sets:"3", reps:"8-10 each",
+        desc:"One hand on bench. Row DB to hip, keeping torso stable. Full stretch at bottom - feel the lat lengthen.", note:"" },
+      { name:"Seated Cable Row - Wide Grip", sets:"3", reps:"10-12",
+        desc:"Wide bar or dual handles. Row to lower sternum, squeeze shoulder blades. 3-count eccentric.",
+        note:"Wide grip shifts emphasis to mid-back and rear delts." },
+      { name:"Face Pull", sets:"3", reps:"12-15",
+        desc:"High cable and rope. Pull toward forehead with elbows high. Finish with external rotation - thumbs pointing back behind you.",
+        note:"Keep load moderate. Also acts as a shoulder health movement." },
+      { name:"Incline DB Curl", sets:"3", reps:"10-12",
+        desc:"Bench at 60 degrees. Arms hang straight down. Curl with supinated wrist. The stretch at the bottom is the whole point.",
+        note:"Replaces EZ-Bar Curl. Long head bias - use less weight than your usual curl." }
     ]
   },
-  {
-    id: "legsA", label: "Legs A", muscle: "Quads - Hamstrings - Calves - Core", cardio: null,
-    exercises: [
-      {
-        name: "Bulgarian Split Squat", sets: "3", reps: "8-10 each leg",
-        desc: "Rear foot elevated on bench. Lower back knee toward floor keeping front shin close to vertical. Drive up through heel.",
-        note: "Replaces Hack Squat. Unilateral work - use DBs to start, expect lower weights but higher demand."
-      },
-      {
-        name: "Romanian Deadlift", sets: "3", reps: "8-10",
-        desc: "Hip hinge with slight knee bend. Bar close to legs. Lower until hamstring stretch, stand tall. Neutral spine throughout.",
-        note: ""
-      },
-      {
-        name: "Leg Press", sets: "3", reps: "10-12",
-        desc: "Feet shoulder-width. Full comfortable ROM. Do not lock knees at top. Control the platform down.",
-        note: ""
-      },
-      {
-        name: "Lying Leg Curl", sets: "3", reps: "10-12",
-        desc: "Lie face down. Curl heels toward glutes. Pause 1 second at top. 3-count eccentric on the way back down.",
-        note: ""
-      },
-      {
-        name: "Standing Calf Raise", sets: "4", reps: "12-15",
-        desc: "Full range of motion - all the way up on toes, full stretch at bottom. Pause 1 second at the top.",
-        note: "Calves respond to volume and full ROM. Do not bounce at the bottom."
-      },
-      {
-        name: "Hanging Knee Raise", sets: "3", reps: "10-15",
-        desc: "Hang from bar. Draw knees up to chest with control. Lower with control - avoid swinging.",
-        note: "Core finisher. Progress to straight-leg raise as this gets easy."
-      }
+  { id:"legsA", label:"Legs A", muscle:"Quads - Hamstrings - Calves - Core", cardio:null,
+    exercises:[
+      { name:"Bulgarian Split Squat", sets:"3", reps:"8-10 each leg",
+        desc:"Rear foot elevated on bench. Lower back knee toward floor keeping front shin close to vertical. Drive up through heel.",
+        note:"Replaces Hack Squat. Unilateral work - use DBs to start, expect lower weights but higher demand." },
+      { name:"Romanian Deadlift", sets:"3", reps:"8-10",
+        desc:"Hip hinge with slight knee bend. Bar close to legs. Lower until hamstring stretch, stand tall. Neutral spine throughout.", note:"" },
+      { name:"Leg Press", sets:"3", reps:"10-12",
+        desc:"Feet shoulder-width. Full comfortable ROM. Do not lock knees at top. Control the platform down.", note:"" },
+      { name:"Lying Leg Curl", sets:"3", reps:"10-12",
+        desc:"Lie face down. Curl heels toward glutes. Pause 1 second at top. 3-count eccentric on the way back down.", note:"" },
+      { name:"Standing Calf Raise", sets:"4", reps:"12-15",
+        desc:"Full range of motion - all the way up on toes, full stretch at bottom. Pause 1 second at the top.",
+        note:"Calves respond to volume and full ROM. Do not bounce at the bottom." },
+      { name:"Hanging Knee Raise", sets:"3", reps:"10-15",
+        desc:"Hang from bar. Draw knees up to chest with control. Lower with control - avoid swinging.",
+        note:"Core finisher. Progress to straight-leg raise as this gets easy." }
     ]
   },
-  {
-    id: "pushB", label: "Push B", muscle: "Chest - Shoulders - Triceps",
-    cardio: {
-      type: "Outdoor Bike Ride", duration: "45-60 min", effort: "RPE 6-7",
-      note: "Weeks 1-2: aim for 45 min, moderate pace. Weeks 3-4: push to 60 min. Getting back into bike fitness takes a few weeks - ease in."
-    },
-    exercises: [
-      {
-        name: "Landmine Press", sets: "3", reps: "8-10 each",
-        desc: "Load one end of barbell in corner or landmine attachment. Press with one hand from shoulder, driving the bar up in an arc. Keep core tight.",
-        note: "Replaces Incline Smith Press. Shoulder-friendly angle, great for upper chest and anterior delt."
-      },
-      {
-        name: "Flat DB Press - Neutral Grip", sets: "3", reps: "8-10",
-        desc: "Lie flat, DBs with palms facing each other. Press straight up. Lower DBs until upper arms are parallel to floor.",
-        note: ""
-      },
-      {
-        name: "Cable Fly - High to Low", sets: "3", reps: "12-15",
-        desc: "Cables set high. Arms slightly bent throughout. Sweep down and in to midline. Squeeze at the finish - do not turn it into a press.",
-        note: ""
-      },
-      {
-        name: "Cable Lateral Raise", sets: "3", reps: "12-15 each",
-        desc: "Single low cable. Raise arm across body to shoulder height. Cable provides constant tension throughout the movement.",
-        note: "Better tension curve than free DB lateral raise."
-      },
-      {
-        name: "Upright Row - EZ Bar", sets: "3", reps: "10-12",
-        desc: "Narrow EZ-bar grip. Pull bar up along torso to upper chest height. Lead with elbows. Stop at shoulder height.",
-        note: "Targets medial delt and upper traps. New movement - ease into the weight for the first 2 weeks."
-      },
-      {
-        name: "Close-Grip Bench Press", sets: "3", reps: "8-10",
-        desc: "Grip bar at shoulder-width or slightly narrower. Lower to lower chest with elbows tucked close. Press to lockout.",
-        note: "Replaces Skull Crushers. More load capacity, less elbow stress over time."
-      }
+  { id:"pushB", label:"Push B", muscle:"Chest - Shoulders - Triceps",
+    cardio:{ type:"Outdoor Bike Ride", duration:"45-60 min", effort:"RPE 6-7",
+             note:"Weeks 1-2: aim for 45 min, moderate pace. Weeks 3-4: push to 60 min. Getting back into bike fitness takes a few weeks - ease in." },
+    exercises:[
+      { name:"Landmine Press", sets:"3", reps:"8-10 each",
+        desc:"Load one end of barbell in corner or landmine attachment. Press with one hand from shoulder, driving the bar up in an arc. Keep core tight.",
+        note:"Replaces Incline Smith Press. Shoulder-friendly angle, great for upper chest and anterior delt." },
+      { name:"Flat DB Press - Neutral Grip", sets:"3", reps:"8-10",
+        desc:"Lie flat, DBs with palms facing each other. Press straight up. Lower DBs until upper arms are parallel to floor.", note:"" },
+      { name:"Cable Fly - High to Low", sets:"3", reps:"12-15",
+        desc:"Cables set high. Arms slightly bent throughout. Sweep down and in to midline. Squeeze at the finish - do not turn it into a press.", note:"" },
+      { name:"Cable Lateral Raise", sets:"3", reps:"12-15 each",
+        desc:"Single low cable. Raise arm across body to shoulder height. Cable provides constant tension throughout.",
+        note:"Better tension curve than free DB lateral raise." },
+      { name:"Upright Row - EZ Bar", sets:"3", reps:"10-12",
+        desc:"Narrow EZ-bar grip. Pull bar up along torso to upper chest height. Lead with elbows. Stop at shoulder height.",
+        note:"Targets medial delt and upper traps. New movement - ease into the weight." },
+      { name:"Close-Grip Bench Press", sets:"3", reps:"8-10",
+        desc:"Grip bar at shoulder-width or slightly narrower. Lower to lower chest with elbows tucked. Press to lockout.",
+        note:"Replaces Skull Crushers. More load capacity, less elbow stress over time." }
     ]
   },
-  {
-    id: "pullB", label: "Pull B", muscle: "Back - Biceps - Rear Delts", cardio: null,
-    exercises: [
-      {
-        name: "Neutral-Grip Chin-Up", sets: "3", reps: "6-8",
-        desc: "Parallel handles. Full hang to start. Pull chest to bar driving elbows down and back. Lower to full extension.",
-        note: "Replaces Lat Pulldown. More stabilizer demand. Use assisted machine if needed."
-      },
-      {
-        name: "Straight-Arm Pulldown", sets: "3", reps: "12-15",
-        desc: "High cable, straight bar. Arms straight throughout - not a row. Sweep bar down to hips. Feel the lat stretch at the top.",
-        note: ""
-      },
-      {
-        name: "Rear Delt Cable Fly", sets: "3", reps: "12-15",
-        desc: "Cables crossed at shoulder height. Arms slightly bent, pull back and outward. Squeeze rear delts at end range.",
-        note: ""
-      },
-      {
-        name: "Hammer Curl", sets: "3", reps: "10-12",
-        desc: "Neutral grip - palms facing each other. Curl to shoulder height. Targets brachialis for overall arm thickness.",
-        note: ""
-      },
-      {
-        name: "Cable Curl", sets: "3", reps: "12-15",
-        desc: "Low cable, EZ or straight bar. Pin elbow to side. Curl up, squeeze at top, slow 3-count lower.",
-        note: ""
-      },
-      {
-        name: "Leg Raise with DB", sets: "3", reps: "10-12",
-        desc: "Lie flat on bench. Hold light DB between feet. Raise legs to vertical, lower with control. Keep low back pressed into bench.",
-        note: "Core finisher. Keep the DB light - control is what matters."
-      }
+  { id:"pullB", label:"Pull B", muscle:"Back - Biceps - Rear Delts", cardio:null,
+    exercises:[
+      { name:"Neutral-Grip Chin-Up", sets:"3", reps:"6-8",
+        desc:"Parallel handles. Full hang to start. Pull chest to bar driving elbows down and back. Lower to full extension.",
+        note:"Replaces Lat Pulldown. More stabilizer demand. Use assisted machine if needed." },
+      { name:"Straight-Arm Pulldown", sets:"3", reps:"12-15",
+        desc:"High cable, straight bar. Arms straight throughout - not a row. Sweep bar down to hips. Feel the lat stretch at the top.", note:"" },
+      { name:"Rear Delt Cable Fly", sets:"3", reps:"12-15",
+        desc:"Cables crossed at shoulder height. Arms slightly bent, pull back and outward. Squeeze rear delts at end range.", note:"" },
+      { name:"Hammer Curl", sets:"3", reps:"10-12",
+        desc:"Neutral grip - palms facing each other. Curl to shoulder height. Targets brachialis for overall arm thickness.", note:"" },
+      { name:"Cable Curl", sets:"3", reps:"12-15",
+        desc:"Low cable, EZ or straight bar. Pin elbow to side. Curl up, squeeze at top, slow 3-count lower.", note:"" },
+      { name:"Leg Raise with DB", sets:"3", reps:"10-12",
+        desc:"Lie flat on bench. Hold light DB between feet. Raise legs to vertical, lower with control. Keep low back pressed into bench.",
+        note:"Core finisher. Keep the DB light - control is what matters." }
     ]
   },
-  {
-    id: "rest", label: "Rest", muscle: "Recovery", cardio: null, isRest: true,
-    restNote: "Optional: 20-30 min easy walk or outdoor bike ride at recovery pace (RPE 4-5). Mobility work, stretching, or foam rolling. No structured lifting today.",
-    exercises: []
-  }
+  { id:"rest", label:"Rest", muscle:"Recovery", cardio:null, isRest:true,
+    restNote:"Optional: 20-30 min easy walk or outdoor bike ride at recovery pace (RPE 4-5). Mobility work, stretching, or foam rolling. No structured lifting today.",
+    exercises:[] }
 ];
 
 var currentWeek = 0;
 var currentDay = 0;
+var showingProgress = false;
 var weights = {};
+var notes = {};
 
-function loadWeights() {
-  try {
-    var raw = localStorage.getItem('jeff_workout_v2');
-    if (raw) { weights = JSON.parse(raw); }
-  } catch(e) { weights = {}; }
+function loadData() {
+  try { var w = localStorage.getItem('jeff_workout_v2'); if (w) { weights = JSON.parse(w); } } catch(e) { weights = {}; }
+  try { var n = localStorage.getItem('jeff_notes_v2'); if (n) { notes = JSON.parse(n); } } catch(e) { notes = {}; }
 }
 
 function saveAll() {
   try {
     localStorage.setItem('jeff_workout_v2', JSON.stringify(weights));
+    localStorage.setItem('jeff_notes_v2', JSON.stringify(notes));
     var btn = document.getElementById('saveBtn');
     btn.classList.add('saved');
-    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saved';
-    showToast('Weights saved');
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saved';
+    showToast('Saved successfully');
     setTimeout(function() {
       btn.classList.remove('saved');
-      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Week';
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save';
     }, 2500);
   } catch(e) { showToast('Could not save'); }
 }
@@ -362,158 +340,268 @@ function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 2200);
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
 }
 
 function changeWeek(dir) {
   var n = currentWeek + dir;
   if (n < 0 || n >= WEEKS.length) { return; }
   currentWeek = n;
-  render();
+  if (showingProgress) { renderHeader(); renderProgress(); } else { render(); }
 }
 
 function selectDay(i) {
   currentDay = i;
   renderDayTabs();
   renderMain();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-function skey(w, dayId, exName) {
-  return 'jw_' + w + '_' + dayId + '_' + exName.replace(/[^a-zA-Z0-9]/g, '_');
-}
+function wkey(w, d, e) { return 'jw_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
+function nkey(w, d, e) { return 'jn_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
 
-function adjustSets(sets, adj) {
+function adjSets(sets, adj) {
   if (!sets) { return sets; }
-  var suffix = '';
+  var sfx = '';
   var base = sets;
-  if (sets.indexOf('each leg') !== -1) { suffix = ' each leg'; base = sets.replace(' each leg', ''); }
-  else if (sets.indexOf('each') !== -1) { suffix = ' each'; base = sets.replace(' each', ''); }
-  var parts = base.split('-');
-  if (parts.length === 2) {
-    return Math.max(2, parseInt(parts[0]) + adj) + '-' + Math.max(2, parseInt(parts[1]) + adj) + suffix;
-  }
-  return Math.max(2, parseInt(base) + adj) + suffix;
+  if (sets.indexOf('each leg') !== -1) { sfx = ' each leg'; base = sets.replace(' each leg',''); }
+  else if (sets.indexOf('each') !== -1) { sfx = ' each'; base = sets.replace(' each',''); }
+  var p = base.split('-');
+  if (p.length === 2) { return Math.max(2,parseInt(p[0])+adj) + '-' + Math.max(2,parseInt(p[1])+adj) + sfx; }
+  return Math.max(2, parseInt(base)+adj) + sfx;
+}
+
+function toggleProgress() {
+  showingProgress = !showingProgress;
+  document.getElementById('progressToggle').classList.toggle('active', showingProgress);
+  document.getElementById('mainContent').style.display = showingProgress ? 'none' : 'block';
+  document.getElementById('progressContent').style.display = showingProgress ? 'block' : 'none';
+  document.getElementById('dayTabs').style.display = showingProgress ? 'none' : 'flex';
+  document.getElementById('focusBanner').style.display = showingProgress ? 'none' : 'block';
+  document.getElementById('progWrap').style.display = showingProgress ? 'none' : 'block';
+  if (showingProgress) { renderProgress(); } else { render(); }
 }
 
 function renderHeader() {
   var wk = WEEKS[currentWeek];
-  document.getElementById('blockChip').textContent = 'Block 1 - ' + wk.full;
+  document.getElementById('blockChip').textContent = 'Block 1';
   document.getElementById('prevBtn').disabled = (currentWeek === 0);
   document.getElementById('nextBtn').disabled = (currentWeek === WEEKS.length - 1);
-
-  var dotsHtml = '';
-  var labelsHtml = '';
+  var dh = '', lh = '';
   for (var i = 0; i < WEEKS.length; i++) {
-    var cls = 'week-dot';
-    if (i < currentWeek) { cls += ' done'; }
-    else if (i === currentWeek) { cls += ' active'; }
-    if (WEEKS[i].isDeload) { cls += ' deload'; }
-    var diff = i - currentWeek;
-    dotsHtml += '<div class="' + cls + '" onclick="changeWeek(' + diff + ')"></div>';
-    labelsHtml += '<div class="week-dot-label">' + WEEKS[i].label + '</div>';
+    var c = 'week-dot' + (i < currentWeek ? ' done' : i === currentWeek ? ' active' : '') + (WEEKS[i].isDeload ? ' deload' : '');
+    dh += '<div class="' + c + '" onclick="changeWeek(' + (i-currentWeek) + ')"></div>';
+    lh += '<div class="week-dot-label">' + WEEKS[i].label + '</div>';
   }
-  document.getElementById('weekDots').innerHTML = dotsHtml;
-  document.getElementById('weekLabels').innerHTML = labelsHtml;
-
-  var banner = document.getElementById('focusBanner');
-  banner.className = 'focus-banner' + (wk.isDeload ? ' deload' : '');
-  banner.innerHTML = '<span class="focus-label">' + wk.rpeLabel + '</span>' + wk.focus;
+  document.getElementById('weekDots').innerHTML = dh;
+  document.getElementById('weekLabels').innerHTML = lh;
+  var b = document.getElementById('focusBanner');
+  b.className = 'focus-banner' + (wk.isDeload ? ' deload' : '');
+  b.innerHTML = '<span class="focus-label">' + wk.rpeLabel + '</span>' + wk.focus;
 }
 
 function renderDayTabs() {
-  var html = '';
+  var h = '';
   for (var i = 0; i < DAYS.length; i++) {
-    html += '<div class="day-tab' + (i === currentDay ? ' active' : '') + '" onclick="selectDay(' + i + ')">' + DAYS[i].label + '</div>';
+    h += '<div class="day-tab' + (i===currentDay?' active':'') + '" onclick="selectDay('+i+')">' + DAYS[i].label + '</div>';
   }
-  document.getElementById('dayTabs').innerHTML = html;
+  document.getElementById('dayTabs').innerHTML = h;
 }
 
 function renderMain() {
   var day = DAYS[currentDay];
   var wk = WEEKS[currentWeek];
-  var html = '<div class="day-header"><div class="day-title">' + day.label + '</div><div class="day-muscle">' + day.muscle + '</div></div>';
+  var h = '<div class="day-header"><div class="day-title">' + day.label + '</div><div class="day-muscle">' + day.muscle + '</div></div>';
 
   if (day.isRest) {
-    html += '<div class="rest-card"><div class="rest-icon">&#127807;</div><div class="rest-title">Rest &amp; Recovery</div><div class="rest-sub">' + day.restNote + '</div></div>';
-    document.getElementById('mainContent').innerHTML = html;
+    h += '<div class="rest-card"><div class="rest-icon">&#127807;</div><div class="rest-title">Rest &amp; Recovery</div><div class="rest-sub">' + day.restNote + '</div></div>';
+    document.getElementById('mainContent').innerHTML = h;
     document.getElementById('progNum').textContent = '-';
     return;
   }
 
   if (day.cardio) {
-    html += '<div class="cardio-card">';
-    html += '<div class="cardio-row"><span class="cardio-type">' + day.cardio.type + '</span><span class="cardio-chip">' + day.cardio.effort + '</span></div>';
-    html += '<div class="cardio-detail">' + day.cardio.duration + '</div>';
-    html += '<div class="cardio-note">' + day.cardio.note + '</div>';
-    html += '</div>';
+    h += '<div class="cardio-card"><div class="cardio-row"><span class="cardio-type">' + day.cardio.type + '</span><span class="cardio-chip">' + day.cardio.effort + '</span></div><div class="cardio-detail">' + day.cardio.duration + '</div><div class="cardio-note-text">' + day.cardio.note + '</div></div>';
   }
 
   for (var e = 0; e < day.exercises.length; e++) {
     var ex = day.exercises[e];
-    var key = skey(currentWeek, day.id, ex.name);
-    var prevKey = currentWeek > 0 ? skey(currentWeek - 1, day.id, ex.name) : null;
-    var curVal = weights[key] || '';
-    var prevVal = prevKey ? (weights[prevKey] || '') : '';
-    var setsDisplay = adjustSets(ex.sets, wk.setsAdj);
-    var badgeCls = 'ex-badge' + (wk.isDeload ? ' deload' : '');
+    var wk_key = wkey(currentWeek, day.id, ex.name);
+    var n_key = nkey(currentWeek, day.id, ex.name);
+    var pw = currentWeek > 0 ? wkey(currentWeek-1, day.id, ex.name) : null;
+    var cv = weights[wk_key] || '';
+    var pv = pw ? (weights[pw] || '') : '';
+    var cn = notes[n_key] || '';
+    var sd = adjSets(ex.sets, wk.setsAdj);
+    var bc = 'ex-badge' + (wk.isDeload ? ' deload' : '');
 
-    html += '<div class="ex-card' + (curVal ? ' logged' : '') + '" id="card_' + key + '">';
-    html += '<div class="ex-main">';
-    html += '<div class="ex-top"><span class="ex-name">' + ex.name + '</span><span class="' + badgeCls + '">' + setsDisplay + ' x ' + ex.reps + '</span></div>';
-    html += '<div class="ex-desc">' + ex.desc + '</div>';
-    if (ex.note) { html += '<div class="ex-note">' + ex.note + '</div>'; }
-    html += '</div>';
-    html += '<div class="weight-section">';
-    html += '<span class="weight-label">Weight</span>';
-    html += '<div class="weight-input-wrap">';
-    html += '<input class="weight-input" type="number" inputmode="decimal" placeholder="' + (prevVal || '--') + '" value="' + curVal + '" min="0" step="2.5" onchange="updateWeight(\'' + key + '\', this.value)" oninput="updateWeight(\'' + key + '\', this.value)">';
-    html += '<span class="weight-unit">lbs</span>';
-    html += '</div>';
-    if (prevVal) {
-      html += '<div class="prev-weight"><span class="prev-val">' + prevVal + ' lbs</span><br>last week</div>';
-    } else {
-      html += '<div class="prev-weight">no prior<br>data</div>';
-    }
-    html += '</div></div>';
+    h += '<div class="ex-card' + (cv?' logged':'') + '" id="card_' + wk_key + '">';
+    h += '<div class="ex-main"><div class="ex-top"><span class="ex-name">' + ex.name + '</span><span class="' + bc + '">' + sd + ' x ' + ex.reps + '</span></div>';
+    h += '<div class="ex-desc">' + ex.desc + '</div>';
+    if (ex.note) { h += '<div class="ex-note-tip">' + ex.note + '</div>'; }
+    h += '</div>';
+    h += '<div class="log-section">';
+    h += '<div class="weight-row"><span class="field-label">Weight</span><div class="weight-input-wrap"><input class="weight-input" type="number" inputmode="decimal" placeholder="' + (pv||'--') + '" value="' + cv + '" min="0" step="2.5" onchange="updateWeight(\'' + wk_key + '\',this.value)" oninput="updateWeight(\'' + wk_key + '\',this.value)"><span class="weight-unit">lbs</span></div>';
+    h += pv ? '<div class="prev-weight"><span class="prev-val">' + pv + ' lbs</span><br>last week</div>' : '<div class="prev-weight">no prior<br>data</div>';
+    h += '</div>';
+    h += '<div class="notes-row"><span class="field-label">Notes</span><textarea class="notes-input" rows="1" placeholder="Optional notes..." onchange="updateNote(\'' + n_key + '\',this.value)" oninput="autoResize(this);updateNote(\'' + n_key + '\',this.value)">' + cn + '</textarea></div>';
+    h += '</div></div>';
   }
 
-  document.getElementById('mainContent').innerHTML = html;
+  document.getElementById('mainContent').innerHTML = h;
+  document.querySelectorAll('.notes-input').forEach(function(el) { autoResize(el); });
   updateProgress();
 }
 
-function updateWeight(key, val) {
-  var v = val.trim();
-  if (v && !isNaN(parseFloat(v))) {
-    weights[key] = v;
-  } else {
-    delete weights[key];
+function renderProgress() {
+  var h = '<div class="prog-head"><div class="prog-head-title">Progress</div><div class="prog-head-sub">Block 1 &mdash; all exercises across all weeks</div></div>';
+  var hasData = false;
+
+  for (var d = 0; d < DAYS.length; d++) {
+    var day = DAYS[d];
+    if (day.isRest || !day.exercises.length) { continue; }
+    h += '<div class="progress-section-card"><div class="progress-section-header">' + day.label + ' &mdash; ' + day.muscle + '</div><div class="progress-section-body">';
+    h += '<table class="progress-table"><tr><th>Exercise</th><th class="num">Wk 1</th><th class="num">Wk 2</th><th class="num">Wk 3</th><th class="num">Wk 4</th></tr>';
+
+    for (var e = 0; e < day.exercises.length; e++) {
+      var ex = day.exercises[e];
+      var vals = [];
+      var maxV = 0;
+      for (var w = 0; w < WEEKS.length; w++) {
+        var v = weights[wkey(w, day.id, ex.name)] || '';
+        vals.push(v);
+        if (v && parseFloat(v) > maxV) { maxV = parseFloat(v); }
+        if (v) { hasData = true; }
+      }
+      h += '<tr><td class="ex-col">' + ex.name + '</td>';
+      for (var w2 = 0; w2 < WEEKS.length; w2++) {
+        var val = vals[w2];
+        var isBest = val && parseFloat(val) === maxV && maxV > 0;
+        h += '<td class="wt-col' + (val ? (isBest?' best':'') : ' empty') + '">' + (val||'-') + '</td>';
+      }
+      h += '</tr>';
+
+      var noteTexts = [];
+      for (var w3 = 0; w3 < WEEKS.length; w3++) {
+        var nv = notes[nkey(w3, day.id, ex.name)];
+        if (nv) { noteTexts.push('W' + (w3+1) + ': ' + nv); }
+      }
+      if (noteTexts.length) {
+        h += '<tr class="note-row"><td colspan="5">' + noteTexts.join(' &nbsp;&bull;&nbsp; ') + '</td></tr>';
+      }
+    }
+    h += '</table></div></div>';
   }
+
+  if (!hasData) {
+    h += '<div class="no-data-msg">No weights logged yet. Start tracking and your progress will appear here.</div>';
+  }
+
+  document.getElementById('progressContent').innerHTML = h;
+}
+
+function autoResize(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
+
+function updateWeight(key, val) {
+  var v = (val||'').toString().trim();
+  if (v && !isNaN(parseFloat(v))) { weights[key] = v; } else { delete weights[key]; }
   var card = document.getElementById('card_' + key);
   if (card) { card.classList.toggle('logged', !!v); }
   updateProgress();
 }
 
+function updateNote(key, val) {
+  var v = (val||'').trim();
+  if (v) { notes[key] = v; } else { delete notes[key]; }
+}
+
 function updateProgress() {
   var day = DAYS[currentDay];
-  if (day.isRest || !day.exercises.length) {
-    document.getElementById('progNum').textContent = '-';
-    return;
-  }
-  var logged = 0;
+  if (day.isRest || !day.exercises.length) { document.getElementById('progNum').textContent = '-'; return; }
+  var n = 0;
   for (var e = 0; e < day.exercises.length; e++) {
-    if (weights[skey(currentWeek, day.id, day.exercises[e].name)]) { logged++; }
+    if (weights[wkey(currentWeek, day.id, day.exercises[e].name)]) { n++; }
   }
-  document.getElementById('progNum').textContent = logged + '/' + day.exercises.length;
+  document.getElementById('progNum').textContent = n + '/' + day.exercises.length;
 }
 
-function render() {
-  renderHeader();
-  renderDayTabs();
-  renderMain();
+function openSyncModal() {
+  document.getElementById('apiKeyInput').value = localStorage.getItem('jeff_sheets_key') || '';
+  document.getElementById('sheetIdInput').value = localStorage.getItem('jeff_sheets_id') || '';
+  document.getElementById('syncModal').classList.remove('hidden');
 }
 
-loadWeights();
+function closeSyncModal() { document.getElementById('syncModal').classList.add('hidden'); }
+
+function doSync() {
+  var apiKey = document.getElementById('apiKeyInput').value.trim();
+  var sheetId = document.getElementById('sheetIdInput').value.trim();
+  if (!apiKey || !sheetId) { showToast('Please enter both fields'); return; }
+  localStorage.setItem('jeff_sheets_key', apiKey);
+  localStorage.setItem('jeff_sheets_id', sheetId);
+  closeSyncModal();
+
+  var btn = document.getElementById('syncBtn');
+  btn.innerHTML = '... Syncing';
+
+  var rows = [['Week','Day','Exercise','Sets x Reps','Weight (lbs)','Notes']];
+  for (var w = 0; w < WEEKS.length; w++) {
+    for (var d = 0; d < DAYS.length; d++) {
+      var day = DAYS[d];
+      if (day.isRest || !day.exercises.length) { continue; }
+      for (var e = 0; e < day.exercises.length; e++) {
+        var ex = day.exercises[e];
+        var wt = weights[wkey(w, day.id, ex.name)] || '';
+        var nt = notes[nkey(w, day.id, ex.name)] || '';
+        if (wt || nt) {
+          rows.push([WEEKS[w].full, day.label, ex.name, ex.sets + ' x ' + ex.reps, wt, nt]);
+        }
+      }
+    }
+  }
+
+  var sheetTitle = 'Workout Log - Block 1';
+  fetch('https://sheets.googleapis.com/v4/spreadsheets/' + sheetId + '?key=' + apiKey)
+    .then(function(r) { return r.json(); })
+    .then(function(meta) {
+      var sheets = meta.sheets || [];
+      var found = false;
+      for (var i = 0; i < sheets.length; i++) {
+        if (sheets[i].properties.title === sheetTitle) { found = true; break; }
+      }
+      if (found) {
+        return writeData(sheetId, apiKey, sheetTitle, rows);
+      } else {
+        return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + sheetId + ':batchUpdate?key=' + apiKey, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ requests:[{ addSheet:{ properties:{ title:sheetTitle } } }] })
+        }).then(function(r) { return r.json(); })
+          .then(function() { return writeData(sheetId, apiKey, sheetTitle, rows); });
+      }
+    })
+    .then(function() {
+      showToast('Synced to Google Sheets');
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Synced';
+      setTimeout(function() {
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Sync';
+      }, 3000);
+    })
+    .catch(function() {
+      showToast('Sync failed - check API key and Sheet ID');
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Sync';
+    });
+}
+
+function writeData(sheetId, apiKey, sheetTitle, rows) {
+  var range = encodeURIComponent(sheetTitle + '!A1');
+  return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + sheetId + '/values/' + range + '?valueInputOption=RAW&key=' + apiKey, {
+    method:'PUT', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ range: sheetTitle + '!A1', majorDimension:'ROWS', values:rows })
+  }).then(function(r) { return r.json(); });
+}
+
+function render() { renderHeader(); renderDayTabs(); renderMain(); }
+loadData();
 render();
 </script>
 </body>
