@@ -50,38 +50,59 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 .day-header{margin-bottom:14px}
 .day-title{font-family:Georgia,serif;font-size:22px;font-weight:normal;color:var(--text);letter-spacing:-0.3px}
 .day-muscle{font-size:13px;color:var(--text2);margin-top:2px}
+
+/* EXERCISE CARD */
 .ex-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
 .ex-card.logged{border-left:3px solid var(--accent)}
 .ex-main{padding:14px}
 .ex-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.ex-name{font-size:15px;font-weight:600;color:var(--text);line-height:1.3;flex:1}
+.ex-name-wrap{flex:1}
+.ex-name{font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
+.ex-link{display:inline-block;font-size:11px;color:var(--blue);text-decoration:none;margin-top:2px;opacity:0.8}
+.ex-link:hover{opacity:1;text-decoration:underline}
 .ex-badge{font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
 .ex-badge.deload{color:var(--text2);background:var(--surface2)}
 .ex-desc{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:6px}
-.ex-note-tip{font-size:12px;color:var(--accent2);background:var(--accent2-light);padding:5px 9px;border-radius:6px;margin-bottom:10px;line-height:1.4}
+.ex-note-tip{font-size:12px;color:var(--accent2);background:var(--accent2-light);padding:5px 9px;border-radius:6px;margin-bottom:4px;line-height:1.4}
+
+/* LOG SECTION */
 .log-section{background:var(--surface2);border-top:1px solid var(--border);padding:10px 14px}
-.weight-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.log-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .field-label{font-size:12px;color:var(--text2);font-weight:500;white-space:nowrap;width:46px}
 .weight-input-wrap{display:flex;align-items:center;gap:6px;flex:1}
-.weight-input{width:88px;height:40px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:17px;font-weight:600;text-align:center;color:var(--text);padding:0 6px;-webkit-appearance:none;appearance:none}
+.weight-input{width:82px;height:40px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:17px;font-weight:600;text-align:center;color:var(--text);padding:0 4px;-webkit-appearance:none;appearance:none}
 .weight-input:focus{outline:none;border-color:var(--accent)}
-.weight-unit{font-size:13px;color:var(--text2)}
-.prev-weight{font-size:11px;color:var(--text3);text-align:right;line-height:1.5;min-width:60px}
-.prev-val{font-weight:600;color:var(--text2);font-size:12px}
-.notes-row{display:flex;align-items:flex-start;gap:10px}
+.reps-input{width:64px;height:40px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:17px;font-weight:600;text-align:center;color:var(--text);padding:0 4px;-webkit-appearance:none;appearance:none}
+.reps-input:focus{outline:none;border-color:var(--accent)}
+.field-unit{font-size:13px;color:var(--text2)}
+.rpe-select{height:40px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:14px;font-weight:600;color:var(--text);padding:0 6px;-webkit-appearance:none;appearance:none;text-align:center;min-width:72px;flex:1;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999690' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px}
+.rpe-select:focus{outline:none;border-color:var(--accent)}
+.rpe-select.rpe-low{border-color:#4a7c5c;color:#2d5a3d}
+.rpe-select.rpe-mid{border-color:#c8943a;color:#8a5e1a}
+.rpe-select.rpe-high{border-color:#a33228;color:#7a1f18}
+.prev-block{font-size:11px;color:var(--text3);text-align:right;line-height:1.6;min-width:68px}
+.prev-val{font-weight:600;color:var(--text2);font-size:12px;display:block}
+.prev-rpe{font-size:10px;color:var(--text3)}
+.notes-row{display:flex;align-items:flex-start;gap:8px}
 .notes-input{flex:1;min-height:36px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-size:13px;color:var(--text);padding:8px 10px;resize:none;font-family:inherit;line-height:1.4}
 .notes-input:focus{outline:none;border-color:var(--accent)}
 .notes-input::placeholder{color:var(--text3)}
+
+/* CARDIO CARD */
 .cardio-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px;border-left:3px solid var(--blue)}
 .cardio-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 .cardio-type{font-size:14px;font-weight:600;color:var(--blue)}
 .cardio-chip{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--blue-light);color:var(--blue);font-weight:500}
 .cardio-detail{font-size:13px;color:var(--text2);margin-bottom:3px}
 .cardio-note-text{font-size:12px;color:var(--text3);font-style:italic}
+
+/* REST CARD */
 .rest-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 20px;text-align:center}
 .rest-icon{font-size:32px;margin-bottom:10px}
 .rest-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
 .rest-sub{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* PROGRESS VIEW */
 .progress-view{padding:12px 16px;padding-bottom:calc(90px + var(--safe-bottom))}
 .prog-head{margin-bottom:14px}
 .prog-head-title{font-family:Georgia,serif;font-size:22px;font-weight:normal;color:var(--text);letter-spacing:-0.3px}
@@ -89,17 +110,23 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 .progress-section-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
 .progress-section-header{padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text2)}
 .progress-section-body{padding:0 6px 6px}
-.progress-table{width:100%;border-collapse:collapse;font-size:12px}
-.progress-table th{text-align:left;color:var(--text3);font-weight:500;padding:6px 6px 4px;font-size:11px;letter-spacing:0.3px}
+.progress-table{width:100%;border-collapse:collapse;font-size:11px}
+.progress-table th{text-align:left;color:var(--text3);font-weight:500;padding:6px 4px 4px;font-size:10px;letter-spacing:0.3px}
 .progress-table th.num{text-align:center}
-.progress-table td{padding:7px 6px;border-top:1px solid var(--border);color:var(--text2);vertical-align:middle}
-.progress-table td.ex-col{color:var(--text);font-weight:500;font-size:12px;line-height:1.3}
-.progress-table td.wt-col{text-align:center;font-size:13px;font-weight:600;color:var(--text);min-width:38px}
-.progress-table td.wt-col.empty{color:var(--text3);font-weight:400;font-size:12px}
+.progress-table td{padding:6px 4px;border-top:1px solid var(--border);color:var(--text2);vertical-align:middle}
+.progress-table td.ex-col{color:var(--text);font-weight:500;font-size:11px;line-height:1.3;max-width:90px}
+.progress-table td.wt-col{text-align:center;font-size:12px;font-weight:600;color:var(--text);min-width:48px}
+.progress-table td.wt-col.empty{color:var(--text3);font-weight:400;font-size:11px}
 .progress-table td.wt-col.best{color:var(--accent);font-weight:700}
 .progress-table tr:nth-child(even) td{background:#faf9f6}
-.note-row td{border-top:none !important;background:#faf9f6 !important;padding:2px 6px 8px !important;font-size:11px;color:var(--text3);font-style:italic;line-height:1.5}
+.note-row td{border-top:none !important;background:#faf9f6 !important;padding:2px 4px 8px !important;font-size:10px;color:var(--text3);font-style:italic;line-height:1.5}
 .no-data-msg{font-size:13px;color:var(--text3);text-align:center;padding:24px;font-style:italic}
+.prog-cell{line-height:1.3}
+.prog-wt{font-size:12px;font-weight:600;color:var(--text);display:block}
+.prog-wt.best{color:var(--accent)}
+.prog-meta{font-size:10px;color:var(--text3);display:block}
+
+/* BOTTOM BAR */
 .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:10px 16px;padding-bottom:calc(10px + var(--safe-bottom));display:flex;align-items:center;gap:8px;z-index:100}
 .save-btn{flex:1;height:46px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
 .save-btn:active{opacity:0.85}
@@ -109,6 +136,8 @@ body{font-family:-apple-system,'Helvetica Neue',sans-serif;color:var(--text);ove
 .progress-wrap{flex-shrink:0;text-align:center;min-width:40px}
 .progress-num{font-size:17px;font-weight:700;color:var(--accent);display:block;line-height:1.1}
 .progress-lbl{font-size:10px;color:var(--text3)}
+
+/* TOAST */
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--text);color:#fff;font-size:13px;font-weight:500;padding:10px 18px;border-radius:20px;z-index:200;opacity:0;transition:all 0.25s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -172,21 +201,21 @@ var WEEKS = [
 var DAYS = [
   { id:"pushA", label:"Push A", muscle:"Chest - Shoulders - Triceps", cardio:null,
     exercises:[
-      { name:"Barbell Bench Press", sets:"3-4", reps:"4-6",
+      { name:"Barbell Bench Press", sets:"3-4", reps:"4-6", url:"barbell-bench-press",
         desc:"Lie flat, grip slightly wider than shoulders. Lower bar to lower-mid chest with elbows at 45 degrees. Press to lockout with control.",
         note:"Top set - primary progression marker. If you hit 6 reps at RPE 8.5 or below, add 5 lbs next week." },
-      { name:"Decline DB Press", sets:"3", reps:"8-10",
+      { name:"Decline DB Press", sets:"3", reps:"8-10", url:"decline-dumbbell-bench-press",
         desc:"Bench at 20-30 degree decline. Press DBs from lower chest. Neutral or slight pronation grip. Control the descent.",
         note:"Replaces Machine Chest Press. Hits lower chest with better range of motion." },
-      { name:"Incline DB Press", sets:"3", reps:"6-10",
+      { name:"Incline DB Press", sets:"3", reps:"6-10", url:"incline-dumbbell-bench-press",
         desc:"Bench at 15-30 degrees. Press from upper chest line to above shoulders. Stop just short of shoulder discomfort.",
         note:"Keep wrists stacked, elbows at 45 degrees. Avoid flaring." },
-      { name:"Pec Deck with Pause", sets:"3", reps:"12-15",
+      { name:"Pec Deck with Pause", sets:"3", reps:"12-15", url:"pec-deck-flyes",
         desc:"Sit upright, elbows at shoulder height. Sweep arms together and hold 1 second at peak contraction before releasing slowly.",
         note:"Replaces Cable Fly. Focus on the squeeze, not the load. Go lighter than you think." },
-      { name:"Tricep Rope Pushdown", sets:"3", reps:"10-12",
+      { name:"Tricep Rope Pushdown", sets:"3", reps:"10-12", url:"tricep-pushdown",
         desc:"High cable, rope attachment. Elbows pinned at sides. Push rope down and flare handles outward at the bottom.", note:"" },
-      { name:"Overhead DB Tricep Extension", sets:"3", reps:"10-12",
+      { name:"Overhead DB Tricep Extension", sets:"3", reps:"10-12", url:"seated-overhead-dumbbell-tricep-extension",
         desc:"Seated or standing. Hold one DB with both hands overhead. Lower behind head, elbows close to ears. Press back up.",
         note:"Hits long head of tricep. Replaces Bar Pressdown on this day." }
     ]
@@ -195,40 +224,40 @@ var DAYS = [
     cardio:{ type:"Easy Run or Walk", duration:"20-30 min", effort:"RPE 5-6",
              note:"Conversational pace. A brisk walk counts just as much as a run here." },
     exercises:[
-      { name:"Pendlay Row", sets:"3-4", reps:"5-8",
+      { name:"Pendlay Row", sets:"3-4", reps:"5-8", url:"pendlay-row",
         desc:"Bar returns to floor each rep. Hinge to near-horizontal torso. Pull bar explosively to lower chest, lower under full control to floor.",
         note:"Replaces Bent Over Row. More explosive, more posterior chain. Expect slightly less weight to start." },
-      { name:"Neutral-Grip Pull-Up", sets:"3", reps:"6-8",
+      { name:"Neutral-Grip Pull-Up", sets:"3", reps:"6-8", url:"neutral-grip-pull-up",
         desc:"Parallel handles, palms facing each other. Drive elbows down and back to pull chest toward bar. Lower to full extension.",
         note:"Use assisted machine or band if needed. Full extension at the bottom matters." },
-      { name:"Single-Arm DB Row", sets:"3", reps:"8-10 each",
+      { name:"Single-Arm DB Row", sets:"3", reps:"8-10 each", url:"one-arm-dumbbell-row",
         desc:"One hand on bench. Row DB to hip, keeping torso stable. Full stretch at bottom - feel the lat lengthen.", note:"" },
-      { name:"Seated Cable Row - Wide Grip", sets:"3", reps:"10-12",
+      { name:"Seated Cable Row - Wide Grip", sets:"3", reps:"10-12", url:"seated-cable-rows",
         desc:"Wide bar or dual handles. Row to lower sternum, squeeze shoulder blades. 3-count eccentric.",
         note:"Wide grip shifts emphasis to mid-back and rear delts." },
-      { name:"Face Pull", sets:"3", reps:"12-15",
+      { name:"Face Pull", sets:"3", reps:"12-15", url:"face-pull",
         desc:"High cable and rope. Pull toward forehead with elbows high. Finish with external rotation - thumbs pointing back behind you.",
         note:"Keep load moderate. Also acts as a shoulder health movement." },
-      { name:"Incline DB Curl", sets:"3", reps:"10-12",
+      { name:"Incline DB Curl", sets:"3", reps:"10-12", url:"incline-dumbbell-curl",
         desc:"Bench at 60 degrees. Arms hang straight down. Curl with supinated wrist. The stretch at the bottom is the whole point.",
         note:"Replaces EZ-Bar Curl. Long head bias - use less weight than your usual curl." }
     ]
   },
   { id:"legsA", label:"Legs A", muscle:"Quads - Hamstrings - Calves - Core", cardio:null,
     exercises:[
-      { name:"Bulgarian Split Squat", sets:"3", reps:"8-10 each leg",
+      { name:"Bulgarian Split Squat", sets:"3", reps:"8-10 each leg", url:"bulgarian-split-squat",
         desc:"Rear foot elevated on bench. Lower back knee toward floor keeping front shin close to vertical. Drive up through heel.",
         note:"Replaces Hack Squat. Unilateral work - use DBs to start, expect lower weights but higher demand." },
-      { name:"Romanian Deadlift", sets:"3", reps:"8-10",
+      { name:"Romanian Deadlift", sets:"3", reps:"8-10", url:"romanian-deadlift",
         desc:"Hip hinge with slight knee bend. Bar close to legs. Lower until hamstring stretch, stand tall. Neutral spine throughout.", note:"" },
-      { name:"Leg Press", sets:"3", reps:"10-12",
+      { name:"Leg Press", sets:"3", reps:"10-12", url:"leg-press",
         desc:"Feet shoulder-width. Full comfortable ROM. Do not lock knees at top. Control the platform down.", note:"" },
-      { name:"Lying Leg Curl", sets:"3", reps:"10-12",
+      { name:"Lying Leg Curl", sets:"3", reps:"10-12", url:"lying-leg-curl",
         desc:"Lie face down. Curl heels toward glutes. Pause 1 second at top. 3-count eccentric on the way back down.", note:"" },
-      { name:"Standing Calf Raise", sets:"4", reps:"12-15",
+      { name:"Standing Calf Raise", sets:"4", reps:"12-15", url:"standing-barbell-calf-raise",
         desc:"Full range of motion - all the way up on toes, full stretch at bottom. Pause 1 second at the top.",
         note:"Calves respond to volume and full ROM. Do not bounce at the bottom." },
-      { name:"Hanging Knee Raise", sets:"3", reps:"10-15",
+      { name:"Hanging Knee Raise", sets:"3", reps:"10-15", url:"hanging-knee-raise",
         desc:"Hang from bar. Draw knees up to chest with control. Lower with control - avoid swinging.",
         note:"Core finisher. Progress to straight-leg raise as this gets easy." }
     ]
@@ -237,38 +266,38 @@ var DAYS = [
     cardio:{ type:"Outdoor Bike Ride", duration:"45-60 min", effort:"RPE 6-7",
              note:"Weeks 1-2: aim for 45 min, moderate pace. Weeks 3-4: push to 60 min. Getting back into bike fitness takes a few weeks - ease in." },
     exercises:[
-      { name:"Landmine Press", sets:"3", reps:"8-10 each",
+      { name:"Landmine Press", sets:"3", reps:"8-10 each", url:"landmine-press",
         desc:"Load one end of barbell in corner or landmine attachment. Press with one hand from shoulder, driving the bar up in an arc. Keep core tight.",
         note:"Replaces Incline Smith Press. Shoulder-friendly angle, great for upper chest and anterior delt." },
-      { name:"Flat DB Press - Neutral Grip", sets:"3", reps:"8-10",
+      { name:"Flat DB Press - Neutral Grip", sets:"3", reps:"8-10", url:"dumbbell-bench-press",
         desc:"Lie flat, DBs with palms facing each other. Press straight up. Lower DBs until upper arms are parallel to floor.", note:"" },
-      { name:"Cable Fly - High to Low", sets:"3", reps:"12-15",
+      { name:"Cable Fly - High to Low", sets:"3", reps:"12-15", url:"cable-crossover",
         desc:"Cables set high. Arms slightly bent throughout. Sweep down and in to midline. Squeeze at the finish - do not turn it into a press.", note:"" },
-      { name:"Cable Lateral Raise", sets:"3", reps:"12-15 each",
+      { name:"Cable Lateral Raise", sets:"3", reps:"12-15 each", url:"cable-lateral-raise",
         desc:"Single low cable. Raise arm across body to shoulder height. Cable provides constant tension throughout.",
         note:"Better tension curve than free DB lateral raise." },
-      { name:"Upright Row - EZ Bar", sets:"3", reps:"10-12",
+      { name:"Upright Row - EZ Bar", sets:"3", reps:"10-12", url:"ez-bar-upright-row",
         desc:"Narrow EZ-bar grip. Pull bar up along torso to upper chest height. Lead with elbows. Stop at shoulder height.",
         note:"Targets medial delt and upper traps. New movement - ease into the weight." },
-      { name:"Close-Grip Bench Press", sets:"3", reps:"8-10",
+      { name:"Close-Grip Bench Press", sets:"3", reps:"8-10", url:"close-grip-bench-press",
         desc:"Grip bar at shoulder-width or slightly narrower. Lower to lower chest with elbows tucked. Press to lockout.",
         note:"Replaces Skull Crushers. More load capacity, less elbow stress over time." }
     ]
   },
   { id:"pullB", label:"Pull B", muscle:"Back - Biceps - Rear Delts", cardio:null,
     exercises:[
-      { name:"Neutral-Grip Chin-Up", sets:"3", reps:"6-8",
+      { name:"Neutral-Grip Chin-Up", sets:"3", reps:"6-8", url:"neutral-grip-pull-up",
         desc:"Parallel handles. Full hang to start. Pull chest to bar driving elbows down and back. Lower to full extension.",
         note:"Replaces Lat Pulldown. More stabilizer demand. Use assisted machine if needed." },
-      { name:"Straight-Arm Pulldown", sets:"3", reps:"12-15",
+      { name:"Straight-Arm Pulldown", sets:"3", reps:"12-15", url:"straight-arm-pulldown",
         desc:"High cable, straight bar. Arms straight throughout - not a row. Sweep bar down to hips. Feel the lat stretch at the top.", note:"" },
-      { name:"Rear Delt Cable Fly", sets:"3", reps:"12-15",
+      { name:"Rear Delt Cable Fly", sets:"3", reps:"12-15", url:"cable-rear-delt-fly",
         desc:"Cables crossed at shoulder height. Arms slightly bent, pull back and outward. Squeeze rear delts at end range.", note:"" },
-      { name:"Hammer Curl", sets:"3", reps:"10-12",
+      { name:"Hammer Curl", sets:"3", reps:"10-12", url:"hammer-curls",
         desc:"Neutral grip - palms facing each other. Curl to shoulder height. Targets brachialis for overall arm thickness.", note:"" },
-      { name:"Cable Curl", sets:"3", reps:"12-15",
+      { name:"Cable Curl", sets:"3", reps:"12-15", url:"cable-bicep-curl",
         desc:"Low cable, EZ or straight bar. Pin elbow to side. Curl up, squeeze at top, slow 3-count lower.", note:"" },
-      { name:"Leg Raise with DB", sets:"3", reps:"10-12",
+      { name:"Leg Raise with DB", sets:"3", reps:"10-12", url:"lying-leg-raise",
         desc:"Lie flat on bench. Hold light DB between feet. Raise legs to vertical, lower with control. Keep low back pressed into bench.",
         note:"Core finisher. Keep the DB light - control is what matters." }
     ]
@@ -278,20 +307,28 @@ var DAYS = [
     exercises:[] }
 ];
 
+var RPE_OPTIONS = ['--','6','6.5','7','7.5','8','8.5','9','9.5','10'];
+
 var currentWeek = 0;
 var currentDay = 0;
 var showingProgress = false;
 var weights = {};
+var reps = {};
+var rpeVals = {};
 var notes = {};
 
 function loadData() {
   try { var w = localStorage.getItem('jeff_workout_v2'); if (w) { weights = JSON.parse(w); } } catch(e) { weights = {}; }
+  try { var r = localStorage.getItem('jeff_reps_v1'); if (r) { reps = JSON.parse(r); } } catch(e) { reps = {}; }
+  try { var p = localStorage.getItem('jeff_rpe_v1'); if (p) { rpeVals = JSON.parse(p); } } catch(e) { rpeVals = {}; }
   try { var n = localStorage.getItem('jeff_notes_v2'); if (n) { notes = JSON.parse(n); } } catch(e) { notes = {}; }
 }
 
 function saveAll() {
   try {
     localStorage.setItem('jeff_workout_v2', JSON.stringify(weights));
+    localStorage.setItem('jeff_reps_v1', JSON.stringify(reps));
+    localStorage.setItem('jeff_rpe_v1', JSON.stringify(rpeVals));
     localStorage.setItem('jeff_notes_v2', JSON.stringify(notes));
     var btn = document.getElementById('saveBtn');
     btn.classList.add('saved');
@@ -326,6 +363,8 @@ function selectDay(i) {
 }
 
 function wkey(w, d, e) { return 'jw_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
+function rkey(w, d, e) { return 'jr_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
+function pkey(w, d, e) { return 'jp_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
 function nkey(w, d, e) { return 'jn_' + w + '_' + d + '_' + e.replace(/[^a-zA-Z0-9]/g, '_'); }
 
 function adjSets(sets, adj) {
@@ -337,6 +376,14 @@ function adjSets(sets, adj) {
   var p = base.split('-');
   if (p.length === 2) { return Math.max(2,parseInt(p[0])+adj) + '-' + Math.max(2,parseInt(p[1])+adj) + sfx; }
   return Math.max(2, parseInt(base)+adj) + sfx;
+}
+
+function rpeClass(val) {
+  if (!val || val === '--') { return ''; }
+  var n = parseFloat(val);
+  if (n <= 7) { return 'rpe-low'; }
+  if (n <= 8.5) { return 'rpe-mid'; }
+  return 'rpe-high';
 }
 
 function toggleProgress() {
@@ -395,24 +442,69 @@ function renderMain() {
   for (var e = 0; e < day.exercises.length; e++) {
     var ex = day.exercises[e];
     var wk_key = wkey(currentWeek, day.id, ex.name);
-    var n_key = nkey(currentWeek, day.id, ex.name);
-    var pw = currentWeek > 0 ? wkey(currentWeek-1, day.id, ex.name) : null;
-    var cv = weights[wk_key] || '';
-    var pv = pw ? (weights[pw] || '') : '';
-    var cn = notes[n_key] || '';
+    var r_key  = rkey(currentWeek, day.id, ex.name);
+    var p_key  = pkey(currentWeek, day.id, ex.name);
+    var n_key  = nkey(currentWeek, day.id, ex.name);
+    var pwk = currentWeek > 0 ? wkey(currentWeek-1, day.id, ex.name) : null;
+    var prk = currentWeek > 0 ? rkey(currentWeek-1, day.id, ex.name) : null;
+    var ppk = currentWeek > 0 ? pkey(currentWeek-1, day.id, ex.name) : null;
+
+    var cv  = weights[wk_key] || '';
+    var crv = reps[r_key] || '';
+    var cpv = rpeVals[p_key] || '--';
+    var cn  = notes[n_key] || '';
+    var pv  = pwk ? (weights[pwk] || '') : '';
+    var prv = prk ? (reps[prk] || '') : '';
+    var ppv = ppk ? (rpeVals[ppk] || '') : '';
+
     var sd = adjSets(ex.sets, wk.setsAdj);
     var bc = 'ex-badge' + (wk.isDeload ? ' deload' : '');
+    var exUrl = 'https://www.muscleandstrength.com/exercises/' + ex.url + '.html';
+
+    // build RPE options
+    var rpeOpts = '';
+    for (var o = 0; o < RPE_OPTIONS.length; o++) {
+      var opt = RPE_OPTIONS[o];
+      rpeOpts += '<option value="' + opt + '"' + (cpv === opt ? ' selected' : '') + '>' + (opt === '--' ? 'RPE' : opt) + '</option>';
+    }
+
+    var prevBlock = '';
+    if (pv) {
+      prevBlock = '<div class="prev-block"><span class="prev-val">' + pv + ' lbs</span>';
+      if (prv) { prevBlock += '<span class="prev-meta">' + prv + ' reps</span>'; }
+      if (ppv && ppv !== '--') { prevBlock += '<span class="prev-meta">RPE ' + ppv + '</span>'; }
+      prevBlock += '<span style="font-size:10px;color:var(--text3)">last week</span></div>';
+    } else {
+      prevBlock = '<div class="prev-block" style="font-size:11px;color:var(--text3)">no prior<br>data</div>';
+    }
 
     h += '<div class="ex-card' + (cv?' logged':'') + '" id="card_' + wk_key + '">';
-    h += '<div class="ex-main"><div class="ex-top"><span class="ex-name">' + ex.name + '</span><span class="' + bc + '">' + sd + ' x ' + ex.reps + '</span></div>';
+    h += '<div class="ex-main">';
+    h += '<div class="ex-top">';
+    h += '<div class="ex-name-wrap"><span class="ex-name">' + ex.name + '</span><br><a class="ex-link" href="' + exUrl + '" target="_blank">&#128279; muscleandstrength.com</a></div>';
+    h += '<span class="' + bc + '">' + sd + ' x ' + ex.reps + '</span>';
+    h += '</div>';
     h += '<div class="ex-desc">' + ex.desc + '</div>';
     if (ex.note) { h += '<div class="ex-note-tip">' + ex.note + '</div>'; }
     h += '</div>';
+
     h += '<div class="log-section">';
-    h += '<div class="weight-row"><span class="field-label">Weight</span><div class="weight-input-wrap"><input class="weight-input" type="number" inputmode="decimal" placeholder="' + (pv||'--') + '" value="' + cv + '" min="0" step="2.5" onchange="updateWeight(\'' + wk_key + '\',this.value)" oninput="updateWeight(\'' + wk_key + '\',this.value)"><span class="weight-unit">lbs</span></div>';
-    h += pv ? '<div class="prev-weight"><span class="prev-val">' + pv + ' lbs</span><br>last week</div>' : '<div class="prev-weight">no prior<br>data</div>';
+
+    // Weight + prev
+    h += '<div class="log-row"><span class="field-label">Weight</span>';
+    h += '<div class="weight-input-wrap"><input class="weight-input" type="number" inputmode="decimal" placeholder="' + (pv||'--') + '" value="' + cv + '" min="0" step="2.5" onchange="updateWeight(\'' + wk_key + '\',this.value)" oninput="updateWeight(\'' + wk_key + '\',this.value)"><span class="field-unit">lbs</span></div>';
+    h += prevBlock;
     h += '</div>';
+
+    // Reps + RPE
+    h += '<div class="log-row"><span class="field-label">Reps</span>';
+    h += '<div class="weight-input-wrap"><input class="reps-input" type="number" inputmode="numeric" placeholder="' + (prv||'--') + '" value="' + crv + '" min="0" step="1" onchange="updateReps(\'' + r_key + '\',this.value)" oninput="updateReps(\'' + r_key + '\',this.value)"></div>';
+    h += '<select class="rpe-select ' + rpeClass(cpv) + '" id="rpe_' + p_key + '" onchange="updateRpe(\'' + p_key + '\',this.value,this)">' + rpeOpts + '</select>';
+    h += '</div>';
+
+    // Notes
     h += '<div class="notes-row"><span class="field-label">Notes</span><textarea class="notes-input" rows="1" placeholder="Optional notes..." onchange="updateNote(\'' + n_key + '\',this.value)" oninput="autoResize(this);updateNote(\'' + n_key + '\',this.value)">' + cn + '</textarea></div>';
+
     h += '</div></div>';
   }
 
@@ -437,17 +529,30 @@ function renderProgress() {
       var maxV = 0;
       for (var w = 0; w < WEEKS.length; w++) {
         var v = weights[wkey(w, day.id, ex.name)] || '';
-        vals.push(v);
+        var rv = reps[rkey(w, day.id, ex.name)] || '';
+        var pv = rpeVals[pkey(w, day.id, ex.name)] || '';
+        vals.push({ wt:v, rp:rv, rpe:pv });
         if (v && parseFloat(v) > maxV) { maxV = parseFloat(v); }
         if (v) { hasData = true; }
       }
+
       h += '<tr><td class="ex-col">' + ex.name + '</td>';
       for (var w2 = 0; w2 < WEEKS.length; w2++) {
-        var val = vals[w2];
-        var isBest = val && parseFloat(val) === maxV && maxV > 0;
-        h += '<td class="wt-col' + (val ? (isBest?' best':'') : ' empty') + '">' + (val||'-') + '</td>';
+        var cell = vals[w2];
+        var isBest = cell.wt && parseFloat(cell.wt) === maxV && maxV > 0;
+        if (cell.wt) {
+          h += '<td class="wt-col"><div class="prog-cell"><span class="prog-wt' + (isBest?' best':'') + '">' + cell.wt + '</span>';
+          var meta = [];
+          if (cell.rp) { meta.push(cell.rp + 'r'); }
+          if (cell.rpe && cell.rpe !== '--') { meta.push('RPE ' + cell.rpe); }
+          if (meta.length) { h += '<span class="prog-meta">' + meta.join(' / ') + '</span>'; }
+          h += '</div></td>';
+        } else {
+          h += '<td class="wt-col empty">-</td>';
+        }
       }
       h += '</tr>';
+
       var noteTexts = [];
       for (var w3 = 0; w3 < WEEKS.length; w3++) {
         var nv = notes[nkey(w3, day.id, ex.name)];
@@ -476,9 +581,16 @@ function updateWeight(key, val) {
   updateProgress();
 }
 
-function updateNote(key, val) {
-  var v = (val||'').trim();
-  if (v) { notes[key] = v; } else { delete notes[key]; }
+function updateReps(key, val) {
+  var v = (val||'').toString().trim();
+  if (v && !isNaN(parseInt(v))) { reps[key] = v; } else { delete reps[key]; }
+}
+
+function updateRpe(key, val, el) {
+  if (val && val !== '--') { rpeVals[key] = val; } else { delete rpeVals[key]; }
+  if (el) {
+    el.className = 'rpe-select ' + rpeClass(val);
+  }
 }
 
 function updateProgress() {
@@ -495,7 +607,7 @@ function doSync() {
   var btn = document.getElementById('syncBtn');
   btn.innerHTML = '... Syncing';
 
-  var rows = [['Week','Day','Exercise','Sets x Reps','Weight (lbs)','Notes']];
+  var rows = [['Week','Day','Exercise','Sets x Reps','Weight (lbs)','Actual Reps','RPE','Notes']];
   for (var w = 0; w < WEEKS.length; w++) {
     for (var d = 0; d < DAYS.length; d++) {
       var day = DAYS[d];
@@ -503,9 +615,11 @@ function doSync() {
       for (var e = 0; e < day.exercises.length; e++) {
         var ex = day.exercises[e];
         var wt = weights[wkey(w, day.id, ex.name)] || '';
+        var rv = reps[rkey(w, day.id, ex.name)] || '';
+        var pv = rpeVals[pkey(w, day.id, ex.name)] || '';
         var nt = notes[nkey(w, day.id, ex.name)] || '';
-        if (wt || nt) {
-          rows.push([WEEKS[w].full, day.label, ex.name, ex.sets + ' x ' + ex.reps, wt, nt]);
+        if (wt || rv || nt) {
+          rows.push([WEEKS[w].full, day.label, ex.name, ex.sets + ' x ' + ex.reps, wt, rv, pv, nt]);
         }
       }
     }
