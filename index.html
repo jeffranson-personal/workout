@@ -593,6 +593,11 @@ function updateReps(key, val) {
   if (v && !isNaN(parseInt(v))) { reps[key] = v; } else { delete reps[key]; }
 }
 
+function updateNote(key, val) {
+  var v = (val||'').trim();
+  if (v) { notes[key] = v; } else { delete notes[key]; }
+}
+
 function updateRpe(key, val, el) {
   if (val && val !== '--') { rpeVals[key] = val; } else { delete rpeVals[key]; }
   if (el) {
