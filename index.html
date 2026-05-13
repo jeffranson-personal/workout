@@ -6,6 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Workout">
+<meta name="app-version" content="1.5">
 <title>Jeff's Workout Tracker</title>
 <style>
 :root {
@@ -309,6 +310,7 @@ var DAYS = [
 
 var RPE_OPTIONS = ['--','6','6.5','7','7.5','8','8.5','9','9.5','10'];
 
+var APP_VERSION = '1.5';
 var currentWeek = 0;
 var currentDay = 0;
 var showingProgress = false;
@@ -316,12 +318,14 @@ var weights = {};
 var reps = {};
 var rpeVals = {};
 var notes = {};
+var synced = {};
 
 function loadData() {
   try { var w = localStorage.getItem('jeff_workout_v2'); if (w) { weights = JSON.parse(w); } } catch(e) { weights = {}; }
   try { var r = localStorage.getItem('jeff_reps_v1'); if (r) { reps = JSON.parse(r); } } catch(e) { reps = {}; }
   try { var p = localStorage.getItem('jeff_rpe_v1'); if (p) { rpeVals = JSON.parse(p); } } catch(e) { rpeVals = {}; }
   try { var n = localStorage.getItem('jeff_notes_v2'); if (n) { notes = JSON.parse(n); } } catch(e) { notes = {}; }
+  try { var s = localStorage.getItem('jeff_synced_v1'); if (s) { synced = JSON.parse(s); } } catch(e) { synced = {}; }
 }
 
 function saveAll() {
@@ -330,6 +334,7 @@ function saveAll() {
     localStorage.setItem('jeff_reps_v1', JSON.stringify(reps));
     localStorage.setItem('jeff_rpe_v1', JSON.stringify(rpeVals));
     localStorage.setItem('jeff_notes_v2', JSON.stringify(notes));
+    localStorage.setItem('jeff_synced_v1', JSON.stringify(synced));
     var btn = document.getElementById('saveBtn');
     btn.classList.add('saved');
     btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saved';
@@ -605,31 +610,64 @@ function updateProgress() {
   document.getElementById('progNum').textContent = n + '/' + day.exercises.length;
 }
 
+function syncIcon() {
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>';
+}
+
 function doSync() {
   var btn = document.getElementById('syncBtn');
   btn.innerHTML = '... Syncing';
 
-  var rows = [['Week','Day','Exercise','Sets x Reps','Weight (lbs)','Actual Reps','RPE','Notes']];
+  // Only send rows for week+day combos not yet synced, or where data has changed
+  var newRows = [];
+  var newSyncedKeys = [];
+
   for (var w = 0; w < WEEKS.length; w++) {
     for (var d = 0; d < DAYS.length; d++) {
       var day = DAYS[d];
       if (day.isRest || !day.exercises.length) { continue; }
+
+      // Check if this week+day has any logged data
+      var dayHasData = false;
       for (var e = 0; e < day.exercises.length; e++) {
         var ex = day.exercises[e];
-        var wt = weights[wkey(w, day.id, ex.name)] || '';
-        var rv = reps[rkey(w, day.id, ex.name)] || '';
-        var pv = rpeVals[pkey(w, day.id, ex.name)] || '';
-        var nt = notes[nkey(w, day.id, ex.name)] || '';
-        if (wt || rv || nt) {
-          rows.push([WEEKS[w].full, day.label, ex.name, ex.sets + ' x ' + ex.reps, wt, rv, pv, nt]);
+        if (weights[wkey(w, day.id, ex.name)] || reps[rkey(w, day.id, ex.name)]) {
+          dayHasData = true; break;
         }
+      }
+      if (!dayHasData) { continue; }
+
+      // Build a hash of current data for this day to detect changes
+      var dayHash = '';
+      for (var e2 = 0; e2 < day.exercises.length; e2++) {
+        var ex2 = day.exercises[e2];
+        dayHash += (weights[wkey(w, day.id, ex2.name)] || '') + '|' +
+                   (reps[rkey(w, day.id, ex2.name)] || '') + '|' +
+                   (rpeVals[pkey(w, day.id, ex2.name)] || '') + '|' +
+                   (notes[nkey(w, day.id, ex2.name)] || '') + ';';
+      }
+
+      var syncKey = 'w' + w + '_' + day.id;
+      // Send if never synced, or data changed since last sync
+      if (!synced[syncKey] || synced[syncKey] !== dayHash) {
+        for (var e3 = 0; e3 < day.exercises.length; e3++) {
+          var ex3 = day.exercises[e3];
+          var wt = weights[wkey(w, day.id, ex3.name)] || '';
+          var rv = reps[rkey(w, day.id, ex3.name)] || '';
+          var pv = rpeVals[pkey(w, day.id, ex3.name)] || '';
+          var nt = notes[nkey(w, day.id, ex3.name)] || '';
+          if (wt || rv || nt) {
+            newRows.push([WEEKS[w].full, day.label, ex3.name, ex3.sets + ' x ' + ex3.reps, wt, rv, pv, nt]);
+          }
+        }
+        newSyncedKeys.push({ key: syncKey, hash: dayHash });
       }
     }
   }
 
-  if (rows.length === 1) {
-    showToast('Nothing logged yet to sync');
-    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Sync';
+  if (newRows.length === 0) {
+    showToast('Everything already synced');
+    btn.innerHTML = syncIcon() + ' Sync';
     return;
   }
 
@@ -637,18 +675,21 @@ function doSync() {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ rows: rows })
+    body: JSON.stringify({ rows: newRows, append: true })
   })
   .then(function() {
-    showToast('Synced to Google Sheets');
+    // Mark these days as synced with their current data hash
+    for (var i = 0; i < newSyncedKeys.length; i++) {
+      synced[newSyncedKeys[i].key] = newSyncedKeys[i].hash;
+    }
+    localStorage.setItem('jeff_synced_v1', JSON.stringify(synced));
+    showToast(newRows.length + ' rows synced to Sheets');
     btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Synced';
-    setTimeout(function() {
-      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Sync';
-    }, 3000);
+    setTimeout(function() { btn.innerHTML = syncIcon() + ' Sync'; }, 3000);
   })
   .catch(function() {
     showToast('Sync failed - check connection');
-    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Sync';
+    btn.innerHTML = syncIcon() + ' Sync';
   });
 }
 
