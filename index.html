@@ -213,9 +213,9 @@ var DAYS = [
       { name:"Pec Deck with Pause", sets:"3", reps:"12-15", url:"pec-deck-flyes",
         desc:"Sit upright, elbows at shoulder height. Sweep arms together and hold 1 second at peak contraction before releasing slowly.",
         note:"Replaces Cable Fly. Focus on the squeeze, not the load. Go lighter than you think." },
-      { name:"Tricep Rope Pushdown", sets:"3", reps:"10-12", url:"tricep-pushdown",
+      { name:"Tricep Rope Pushdown", sets:"3", reps:"10-12", url:"rope-tricep-extension",
         desc:"High cable, rope attachment. Elbows pinned at sides. Push rope down and flare handles outward at the bottom.", note:"" },
-      { name:"Overhead DB Tricep Extension", sets:"3", reps:"10-12", url:"seated-overhead-dumbbell-tricep-extension",
+      { name:"Overhead DB Tricep Extension", sets:"3", reps:"10-12", url:"two-arm-dumbbell-extension",
         desc:"Seated or standing. Hold one DB with both hands overhead. Lower behind head, elbows close to ears. Press back up.",
         note:"Hits long head of tricep. Replaces Bar Pressdown on this day." }
     ]
@@ -224,15 +224,15 @@ var DAYS = [
     cardio:{ type:"Easy Run or Walk", duration:"20-30 min", effort:"RPE 5-6",
              note:"Conversational pace. A brisk walk counts just as much as a run here." },
     exercises:[
-      { name:"Pendlay Row", sets:"3-4", reps:"5-8", url:"pendlay-row",
+      { name:"Pendlay Row", sets:"3-4", reps:"5-8", url:"pendlay-row", noHtml:true,
         desc:"Bar returns to floor each rep. Hinge to near-horizontal torso. Pull bar explosively to lower chest, lower under full control to floor.",
         note:"Replaces Bent Over Row. More explosive, more posterior chain. Expect slightly less weight to start." },
-      { name:"Neutral-Grip Pull-Up", sets:"3", reps:"6-8", url:"neutral-grip-pull-up",
+      { name:"Neutral-Grip Pull-Up", sets:"3", reps:"6-8", url:"wide-grip-pull-up",
         desc:"Parallel handles, palms facing each other. Drive elbows down and back to pull chest toward bar. Lower to full extension.",
         note:"Use assisted machine or band if needed. Full extension at the bottom matters." },
       { name:"Single-Arm DB Row", sets:"3", reps:"8-10 each", url:"one-arm-dumbbell-row",
         desc:"One hand on bench. Row DB to hip, keeping torso stable. Full stretch at bottom - feel the lat lengthen.", note:"" },
-      { name:"Seated Cable Row - Wide Grip", sets:"3", reps:"10-12", url:"seated-cable-rows",
+      { name:"Seated Cable Row - Wide Grip", sets:"3", reps:"10-12", url:"seated-row",
         desc:"Wide bar or dual handles. Row to lower sternum, squeeze shoulder blades. 3-count eccentric.",
         note:"Wide grip shifts emphasis to mid-back and rear delts." },
       { name:"Face Pull", sets:"3", reps:"12-15", url:"face-pull",
@@ -266,7 +266,7 @@ var DAYS = [
     cardio:{ type:"Outdoor Bike Ride", duration:"45-60 min", effort:"RPE 6-7",
              note:"Weeks 1-2: aim for 45 min, moderate pace. Weeks 3-4: push to 60 min. Getting back into bike fitness takes a few weeks - ease in." },
     exercises:[
-      { name:"Landmine Press", sets:"3", reps:"8-10 each", url:"landmine-press",
+      { name:"Landmine Press", sets:"3", reps:"8-10 each", url:"single-arm-landmine-press", noHtml:true,
         desc:"Load one end of barbell in corner or landmine attachment. Press with one hand from shoulder, driving the bar up in an arc. Keep core tight.",
         note:"Replaces Incline Smith Press. Shoulder-friendly angle, great for upper chest and anterior delt." },
       { name:"Flat DB Press - Neutral Grip", sets:"3", reps:"8-10", url:"dumbbell-bench-press",
@@ -276,7 +276,7 @@ var DAYS = [
       { name:"Cable Lateral Raise", sets:"3", reps:"12-15 each", url:"cable-lateral-raise",
         desc:"Single low cable. Raise arm across body to shoulder height. Cable provides constant tension throughout.",
         note:"Better tension curve than free DB lateral raise." },
-      { name:"Upright Row - EZ Bar", sets:"3", reps:"10-12", url:"ez-bar-upright-row",
+      { name:"Upright Row - EZ Bar", sets:"3", reps:"10-12", url:"upright-row",
         desc:"Narrow EZ-bar grip. Pull bar up along torso to upper chest height. Lead with elbows. Stop at shoulder height.",
         note:"Targets medial delt and upper traps. New movement - ease into the weight." },
       { name:"Close-Grip Bench Press", sets:"3", reps:"8-10", url:"close-grip-bench-press",
@@ -286,16 +286,16 @@ var DAYS = [
   },
   { id:"pullB", label:"Pull B", muscle:"Back - Biceps - Rear Delts", cardio:null,
     exercises:[
-      { name:"Neutral-Grip Chin-Up", sets:"3", reps:"6-8", url:"neutral-grip-pull-up",
+      { name:"Neutral-Grip Chin-Up", sets:"3", reps:"6-8", url:"wide-grip-pull-up",
         desc:"Parallel handles. Full hang to start. Pull chest to bar driving elbows down and back. Lower to full extension.",
         note:"Replaces Lat Pulldown. More stabilizer demand. Use assisted machine if needed." },
-      { name:"Straight-Arm Pulldown", sets:"3", reps:"12-15", url:"straight-arm-pulldown",
+      { name:"Straight-Arm Pulldown", sets:"3", reps:"12-15", url:"straight-arm-lat-pull-down",
         desc:"High cable, straight bar. Arms straight throughout - not a row. Sweep bar down to hips. Feel the lat stretch at the top.", note:"" },
-      { name:"Rear Delt Cable Fly", sets:"3", reps:"12-15", url:"cable-rear-delt-fly",
+      { name:"Rear Delt Cable Fly", sets:"3", reps:"12-15", url:"standing-cable-flys",
         desc:"Cables crossed at shoulder height. Arms slightly bent, pull back and outward. Squeeze rear delts at end range.", note:"" },
-      { name:"Hammer Curl", sets:"3", reps:"10-12", url:"hammer-curls",
+      { name:"Hammer Curl", sets:"3", reps:"10-12", url:"standing-hammer-curl",
         desc:"Neutral grip - palms facing each other. Curl to shoulder height. Targets brachialis for overall arm thickness.", note:"" },
-      { name:"Cable Curl", sets:"3", reps:"12-15", url:"cable-bicep-curl",
+      { name:"Cable Curl", sets:"3", reps:"12-15", url:"cable-curl",
         desc:"Low cable, EZ or straight bar. Pin elbow to side. Curl up, squeeze at top, slow 3-count lower.", note:"" },
       { name:"Leg Raise with DB", sets:"3", reps:"10-12", url:"lying-leg-raise",
         desc:"Lie flat on bench. Hold light DB between feet. Raise legs to vertical, lower with control. Keep low back pressed into bench.",
@@ -459,7 +459,9 @@ function renderMain() {
 
     var sd = adjSets(ex.sets, wk.setsAdj);
     var bc = 'ex-badge' + (wk.isDeload ? ' deload' : '');
-    var exUrl = 'https://www.muscleandstrength.com/exercises/' + ex.url + '.html';
+    var exUrl = ex.noHtml
+      ? 'https://www.muscleandstrength.com/exercises/' + ex.url
+      : 'https://www.muscleandstrength.com/exercises/' + ex.url + '.html';
 
     // build RPE options
     var rpeOpts = '';
