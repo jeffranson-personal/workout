@@ -631,7 +631,7 @@ function doSync() {
       var dayHasData = false;
       for (var e = 0; e < day.exercises.length; e++) {
         var ex = day.exercises[e];
-        if (weights[wkey(w, day.id, ex.name)] || reps[rkey(w, day.id, ex.name)]) {
+        if (weights[wkey(w, day.id, ex.name)] || reps[rkey(w, day.id, ex.name)] || notes[nkey(w, day.id, ex.name)]) {
           dayHasData = true; break;
         }
       }
