@@ -692,7 +692,7 @@ function doSync() {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ rows: newRows, append: true })
+    body: JSON.stringify({ rows: newRows, append: true, sheetName: 'Workout Log - Block 2' })
   })
   .then(function() {
     // Mark these days as synced with their current data hash
