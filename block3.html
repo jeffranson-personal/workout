@@ -18,7 +18,8 @@
 html,body{height:100%;background:var(--bg);color:var(--text);
   font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:16px;
   line-height:1.45;overscroll-behavior-y:contain}
-body{padding-bottom:calc(70px + var(--safe-bottom))}
+html{scroll-padding-bottom:calc(160px + var(--safe-bottom))}
+body{padding-bottom:calc(160px + var(--safe-bottom))}
 h2,h3{font-weight:600}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 input,select{font:inherit;color:var(--text);background:var(--panel2);
@@ -703,7 +704,7 @@ function renderTrain() {
         h += '<div class="setr'+(isDone?' ok':'')+'" id="setrow_'+day.id+'_'+s2+'_'+safeName+'">';
         h += '<div class="sn">'+(s2+1)+'</div>';
         h += '<input type="number" inputmode="decimal" id="w_'+day.id+'_'+s2+'_'+safeName+'" placeholder="'+(prevW||'--')+'" value="'+(isDone&&cv?cv:'')+'" min="0" step="2.5">';
-        h += '<input type="number" inputmode="numeric" id="r_'+day.id+'_'+s2+'_'+safeName+'" placeholder="'+(prevR||ex.reps)+'" value="" min="0" step="1">';
+        h += '<input type="number" inputmode="numeric" id="r_'+day.id+'_'+s2+'_'+safeName+'" placeholder="'+(prevR||ex.reps)+'" value="'+(isDone&&crv?crv:'')+'" min="0" step="1">';
         var rpeOpts = '';
         for (var o = 0; o < RPE_OPTIONS.length; o++) {
           var opt = RPE_OPTIONS[o];
@@ -730,6 +731,14 @@ function renderTrain() {
 function toggleEx(i) {
   openExIdx = openExIdx === i ? -1 : i;
   renderView();
+  if (openExIdx === i) {
+    setTimeout(function() {
+      var cards = document.querySelectorAll('.ex');
+      if (cards[i]) {
+        cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 50);
+  }
 }
 
 function esc(s) { return s.replace(/'/g,"\\'"); }
