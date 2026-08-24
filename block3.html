@@ -183,9 +183,8 @@ table.data-table td{padding:7px 6px;border-bottom:1px solid var(--line);
 
 /* NAV */
 nav{flex-shrink:0;background:rgba(13,17,23,.96);
-  border-top:1px solid var(--line);display:flex;
-  padding-bottom:var(--safe-bottom)}
-nav button{flex:1;padding:10px 4px 8px;color:var(--dim);font-size:11px;
+  border-bottom:1px solid var(--line);display:flex;}
+nav button{flex:1;padding:8px 4px;color:var(--dim);font-size:11px;
   display:flex;flex-direction:column;align-items:center;gap:3px}
 nav button.on{color:var(--accent)}
 nav .ic{font-size:19px;line-height:1}
@@ -233,6 +232,15 @@ nav .ic{font-size:19px;line-height:1}
   <div id="focusBanner" class="focus-banner"></div>
 </div>
 
+<nav id="mainNav">
+  <button class="on" data-v="train" onclick="goView('train')">
+    <span class="ic">&#127947;</span>Train
+  </button>
+  <button data-v="daily" onclick="goView('daily')">
+    <span class="ic">&#128200;</span>Daily
+  </button>
+</nav>
+
 <main>
   <section id="v-train"></section>
   <section id="v-progress" class="hide"></section>
@@ -265,14 +273,6 @@ nav .ic{font-size:19px;line-height:1}
   <button class="reset-btn" onclick="clearSyncCache()">Reset sync</button>
 </div>
 
-<nav id="mainNav">
-  <button class="on" data-v="train" onclick="goView('train')">
-    <span class="ic">&#127947;</span>Train
-  </button>
-  <button data-v="daily" onclick="goView('daily')">
-    <span class="ic">&#128200;</span>Daily
-  </button>
-</nav>
 
 <script>
 /* ============================================================
