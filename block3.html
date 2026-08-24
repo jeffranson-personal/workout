@@ -48,11 +48,18 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 .wdot.deload{background:var(--dim)}
 .focus-banner{font-size:12px;color:var(--accent);margin-top:8px;line-height:1.4;
   background:rgba(63,185,80,.08);border:1px solid rgba(63,185,80,.2);
-  border-radius:8px;padding:8px 12px}
+  border-radius:8px;padding:0;cursor:pointer;overflow:hidden}
 .focus-banner.deload{color:var(--dim);background:rgba(139,148,158,.08);
   border-color:rgba(139,148,158,.2)}
+.focus-banner-hdr{display:flex;align-items:center;justify-content:space-between;
+  padding:7px 12px;gap:8px}
 .focus-rpe{font-size:10px;text-transform:uppercase;letter-spacing:.5px;
-  font-weight:600;opacity:.7;display:block;margin-bottom:2px}
+  font-weight:600;opacity:.7}
+.focus-chev{font-size:11px;opacity:.5;transition:transform .2s;flex-shrink:0}
+.focus-chev.open{transform:rotate(180deg)}
+.focus-body{font-size:12px;line-height:1.5;padding:0 12px 8px;
+  display:none}
+.focus-body.open{display:block}
 
 /* MAIN */
 main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
@@ -182,12 +189,7 @@ table.data-table td{padding:7px 6px;border-bottom:1px solid var(--line);
 .timer .skip{font-size:13px;opacity:.85}
 
 /* NAV */
-nav{flex-shrink:0;background:rgba(13,17,23,.96);
-  border-bottom:1px solid var(--line);display:flex;}
-nav button{flex:1;padding:8px 4px;color:var(--dim);font-size:11px;
-  display:flex;flex-direction:column;align-items:center;gap:3px}
-nav button.on{color:var(--accent)}
-nav .ic{font-size:19px;line-height:1}
+
 
 /* BOTTOM BAR */
 .bottom-bar{flex-shrink:0;background:rgba(13,17,23,.96);
@@ -220,6 +222,9 @@ nav .ic{font-size:19px;line-height:1}
       <button id="progToggle" style="font-size:12px;font-weight:500;color:var(--accent2);
         background:rgba(74,158,255,.12);padding:4px 10px;border-radius:20px;
         border:none;cursor:pointer" onclick="toggleProgress()">Progress</button>
+      <button id="dailyToggle" style="font-size:12px;font-weight:500;color:var(--dim);
+        background:none;padding:4px 6px;border-radius:20px;
+        border:none;cursor:pointer" onclick="goView('daily')">Daily</button>
       <span class="block-chip">Block 3</span>
     </div>
   </div>
@@ -232,14 +237,6 @@ nav .ic{font-size:19px;line-height:1}
   <div id="focusBanner" class="focus-banner"></div>
 </div>
 
-<nav id="mainNav">
-  <button class="on" data-v="train" onclick="goView('train')">
-    <span class="ic">&#127947;</span>Train
-  </button>
-  <button data-v="daily" onclick="goView('daily')">
-    <span class="ic">&#128200;</span>Daily
-  </button>
-</nav>
 
 <main>
   <section id="v-train"></section>
@@ -592,6 +589,16 @@ function tickSet(dayId, exName, setIdx, restSec, defaultWeight) {
 }
 
 /* ============================================================
+   BANNER TOGGLE
+   ============================================================ */
+function toggleBanner() {
+  var banner = document.getElementById('focusBanner');
+  var isOpen = banner.dataset.open === '1';
+  banner.dataset.open = isOpen ? '0' : '1';
+  renderHeader();
+}
+
+/* ============================================================
    RENDER HEADER
    ============================================================ */
 function renderHeader() {
@@ -607,8 +614,14 @@ function renderHeader() {
   }
   document.getElementById('weekDots').innerHTML = dots;
   var banner = document.getElementById('focusBanner');
+  var isOpen = banner.dataset.open === '1';
   banner.className = 'focus-banner' + (wk.isDeload ? ' deload' : '');
-  banner.innerHTML = '<span class="focus-rpe">'+wk.rpeLabel+'</span>'+wk.focus;
+  banner.innerHTML =
+    '<div class="focus-banner-hdr" onclick="toggleBanner()">' +
+      '<span class="focus-rpe">'+wk.rpeLabel+'</span>' +
+      '<span class="focus-chev'+(isOpen?' open':'')+'">&#9660;</span>' +
+    '</div>' +
+    '<div class="focus-body'+(isOpen?' open':'')+'">'+wk.focus+'</div>';
 }
 
 /* ============================================================
@@ -912,9 +925,13 @@ function goView(v) {
   document.getElementById('progToggle').style.background = 'rgba(74,158,255,.12)';
   document.getElementById('progToggle').style.color = 'var(--accent2)';
   document.getElementById('progCount').style.display = 'block';
-  document.querySelectorAll('nav button').forEach(function(b) {
-    b.classList.toggle('on', b.dataset.v === v);
-  });
+  var dailyBtn = document.getElementById('dailyToggle');
+  if (dailyBtn) {
+    dailyBtn.style.color = v === 'daily' ? 'var(--accent2)' : 'var(--dim)';
+    dailyBtn.style.background = v === 'daily' ? 'rgba(74,158,255,.12)' : 'none';
+    dailyBtn.textContent = v === 'daily' ? 'Train' : 'Daily';
+    dailyBtn.onclick = v === 'daily' ? function(){ goView('train'); } : function(){ goView('daily'); };
+  }
   var weekNavWrap = document.getElementById('weekNavWrap');
   var focusBanner = document.getElementById('focusBanner');
   weekNavWrap.style.display = v === 'daily' ? 'none' : 'flex';
