@@ -17,9 +17,9 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);color:var(--text);
   font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:16px;
-  line-height:1.45;overscroll-behavior-y:contain}
-html{scroll-padding-bottom:calc(160px + var(--safe-bottom))}
-body{padding-bottom:calc(160px + var(--safe-bottom))}
+  line-height:1.45}
+html{scroll-padding-bottom:calc(200px + var(--safe-bottom))}
+body{padding-bottom:calc(200px + var(--safe-bottom))}
 h2,h3{font-weight:600}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 input,select{font:inherit;color:var(--text);background:var(--panel2);
@@ -172,7 +172,7 @@ table.data-table td{padding:7px 6px;border-bottom:1px solid var(--line);
 
 /* TIMER */
 .timer{position:fixed;left:16px;right:16px;
-  bottom:calc(70px + var(--safe-bottom) + 8px);
+  bottom:calc(52px + var(--safe-bottom) + 64px + 8px);
   background:var(--accent2);color:#fff;border-radius:var(--radius);
   padding:12px 16px;display:none;justify-content:space-between;
   align-items:center;z-index:30;box-shadow:0 6px 24px rgba(0,0,0,.5);
@@ -192,10 +192,10 @@ nav button.on{color:var(--accent)}
 nav .ic{font-size:19px;line-height:1}
 
 /* BOTTOM BAR */
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:26;
+.bottom-bar{position:fixed;bottom:calc(52px + var(--safe-bottom));left:0;right:0;z-index:26;
   background:rgba(13,17,23,.96);backdrop-filter:blur(12px);
   border-top:1px solid var(--line);
-  padding:10px 16px;padding-bottom:calc(10px + var(--safe-bottom));
+  padding:10px 16px;
   display:flex;align-items:center;gap:8px;max-width:640px;margin:0 auto}
 .save-btn{flex:1;height:44px;background:var(--accent);color:#fff;border:none;
   border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;
